@@ -3,16 +3,67 @@
 - React can be compared to Angular that is made by google and vue.js that is already open sourced.
 - Component based structre.
 
+
 ### Babel
 Balel is the compiler for react.
 
 ## Why react
+* Large code can be converted into smaller components which can further be added to the app/webpage easily making the designing part much easier hence taking less time.
+* React is Declarative(oly need to tell what to do) . Vanilla JS is imperative.(all steps need to be fed to computer/how to do it)
+* great for SPA (*Single page Applications*)
 
 ## JSX
+Javascript XML.
+* js but kinda like html.
+* kinda like a function, when html element are passed to it it returns js object that can be used to create actual elements.
+* Single parent element needed.
+* wrap inside a div or react fragement to display multiple tags.
+*  html tags can be stored in a variable
+
 
 ## Components
+*Composable/Resuable elements*
+Components are basically fucntions that can be added to render function. components can be defined using normal js function() and needs to be exported. Later they can be used for rendering. Components also need to be imported first from the specific file.
+
+for ex. 
+```javascript
+function Header(){
+return(
+<h1> some html data</h1
+)
+}
+export default Header;
+```
 
 
+```javascript 
+import Header from "./components/Header";
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
+<React.StrictMode>
+<App />
+<Header /> 
+</React.StrictMode>
+);
+```
+We can also use ReactDOM.render to render the component.
+```javascript 
+ReactDOM.render(
+
+	<div >
+		<App />
+		<Header />
+	</div>,
+
+document.getElementById("root")
+
+)
+```
+```javascript 
+ReactDOM.render(<some html tag/data> , document.getElementById("DOM Id that component will change"))
+```
 
 ---
 
