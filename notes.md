@@ -31,6 +31,11 @@ You also need to link babel cdn file.
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
+You also need to add link for js file and use type as text/babel.
+```html
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+```
+
 ---
 
 #### React using NPX
