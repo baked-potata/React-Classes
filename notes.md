@@ -58,6 +58,8 @@ Javascript XML.
 ## Components
 *Composable/Resuable elements*
 Components are basically fucntions that can be added to render function. components can be defined using normal js function() and needs to be exported. Later they can be used for rendering. Components also need to be imported first from the specific file.
+* Component should always start with capital, use pascal case.
+* Instead of calling it by a normal funciton like `CallFunction()` , it has to be wrapped in HTML like structre, i.e. self closing tag ex. `<CallFunction />`
 
 Import Examples. 
 ```javascript
@@ -161,11 +163,6 @@ Component is a reusable piece of ui that icludes with design and fucntionallity.
 * public > index.html should have atleast one selector ie div tag with id
   
 
----
-
-# Component
-
-* Component should always start with capital, use pascal case.
 -----
 
 # FAQ/Questions
