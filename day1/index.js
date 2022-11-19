@@ -10,7 +10,6 @@
 // // </div>,
 // //  document.getElementById("root"))
 
-
 // function Navbar(){
 //     return(
 //         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -57,7 +56,6 @@
 //     )
 // }
 
-
 // ReactDOM.render(
 //     <div >
 //             <Navbar />
@@ -66,17 +64,18 @@
 //     document.getElementById("root")
 // )
 
-
-
 const nav = (
-    <div className="nav">
-        <h1 className="brand">website</h1>
-        <ul>
-            <li>Pricing</li>
-            <li>About</li>
-            <li>Contact</li>
-        </ul>
-    </div>
-)
-const root = document.getElementById("root");
-ReactDOM.render(nav,root)
+  <div className="nav">
+    <h1 className="brand">website</h1>
+    <ul>
+      <li>Pricing</li>
+      <li>About</li>
+      <li>Contact</li>
+    </ul>
+  </div>
+);
+// const root = document.getElementById("root");
+// ReactDOM.render(nav, root);
+
+const a = ReactDOM.createRoot(document.getElementById("root"));
+a.render(nav);
