@@ -59,6 +59,7 @@ Javascript XML.
 *Composable/Resuable elements*
 Components are basically fucntions that can be added to render function. components can be defined using normal js function() and needs to be exported. Later they can be used for rendering. Components also need to be imported first from the specific file.
 * Component should always start with capital, use pascal case.
+* Component is a reusable piece of ui that icludes with design and fucntionallity.
 * Instead of calling it by a normal funciton like `CallFunction()` , it has to be wrapped in HTML like structre, i.e. self closing tag ex. `<CallFunction />`
 
 Import Examples. 
@@ -77,6 +78,12 @@ return(
 )
 }
 export default Header;
+```
+
+We can also export components by adding `export default` before stating to write the component
+
+```javascript
+export default function Header()
 ```
 
 ```javascript
@@ -145,9 +152,13 @@ ReactDOM.render(<some html tag/data> , document.getElementById("DOM Id that comp
 Document object model. It is the model created by browser when a page is loaded.
 It is that tree like structre that can later be changed by using JS.
 
+## Organisation system
+- Make new components in diffrent file only
+- You can also import images using the `import` command. It helps in keeping the structre and file path save as it changes when building the project
+	```javascript
+	import logo from './logo_image.png'
+```
 
-### Component
-Component is a reusable piece of ui that icludes with design and fucntionallity.
 
 
 
@@ -161,7 +172,46 @@ Component is a reusable piece of ui that icludes with design and fucntionallity.
 * App.css for styling app component
 * all app information to be contained i  package.json
 * public > index.html should have atleast one selector ie div tag with id
-  
+
+----
+
+# Styling in React
+
+To add a style element in React we can either use inline CSS or import an external file.
+- The major difference is gonna be how you write classes, instead of using `class` , we are gonna use `className` (use camel case).
+- The class needs to be imported.
+	```javascript
+	import "./Header.css";
+	```
+- For inline CSS we need to add the styles as a javascript object instead of what we used to do in normal HTML/CSS.
+	```javascript
+	<h1 style={{color:"red",someStyle:"property",and:"so on"}}>Some text here</h1>
+	//the first {} tells react that we wanna insert javascript code here. the second { }
+	// is  to create an object which will contain the css element in key:value form.
+```
+- We can add style Objects in a variable, 
+	```javascript
+	const styleElement = {
+		display:"flex",
+		fontSize:56,
+		lineSpacing:5,
+		//Notice how the properties with multiple words in name are converted into 
+		//camelCase objects.
+		color:"#ae2356",
+		// The color code is also in double quotes as its a string.
+		letterSpacing:18
+	}
+
+	<h1 style={styleElement}>This is some text here<h1>
+	// again the { } starts to insert javascript code so that we can add the variable.
+```
+
+- arrow functions can be used to change the style/classes based on states(Will update later).
+
+---
+# State Management
+
+State management is basically data and how we manage data.
 
 -----
 
