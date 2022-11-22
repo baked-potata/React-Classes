@@ -225,7 +225,7 @@ State management is basically data and how we manage data.
 eventually add to the real DOM for us.**
 
 3. **What's wrong with this code:**
-```
+```javascript
 const page = (
     <h1>Hello</h1>
     <p>This is my website!</p>
