@@ -1,6 +1,6 @@
 import Header from "./components/Header";
-function App(){
-
+import StudentList from "./components/StudentList";
+function App() {
   return (
     <>
       <Header />
@@ -9,17 +9,16 @@ function App(){
       <div className="abc">
         <p>lorem</p>
       </div>
-
       <div className="nav">
         <ul>
           <li></li>
         </ul>
-      </div>*5
-      
-      </>
-      
-  )
+      </div>
+      *5
+      <br></br>
+      <StudentList />
+    </>
+  );
 }
-
 
 export default App;
