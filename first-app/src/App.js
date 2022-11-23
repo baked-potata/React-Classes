@@ -1,5 +1,7 @@
 import Header from "./components/Header";
 import StudentList from "./components/StudentList";
+import Counter from "./components/Counter";
+import CounterWithObject from "./components/CounterWithObject";
 function App() {
   return (
     <>
@@ -17,6 +19,9 @@ function App() {
       *5
       <br></br>
       <StudentList />
+      <Counter />
+
+      <CounterWithObject />
     </>
   );
 }
