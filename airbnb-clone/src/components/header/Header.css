@@ -1,0 +1,18 @@
+main {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header--photo {
+  max-width: 600px;
+  align-self: center;
+}
+
+.header--h1 {
+  margin-bottom: 16px;
+}
+
+.header--p {
+  margin-top: 0;
+}

@@ -170,6 +170,7 @@ ReactDOM.render(<some html tag/data> , document.getElementById("DOM Id that comp
 
 - Single Page application loads just one page ie index.html
 - other pages are made in components
+- Add `{require('path/to/file')}` to load images without importing
 
 ### DOM
 
@@ -184,15 +185,12 @@ It is that tree like structre that can later be changed by using JS.
   import logo from "./logo_image.png";
   ```
 
----
+## Folder Structre notes
 
-# Folder Structre notes
-
-- createroot defines the dom element to be changed by reactDOM.
 - <App /> is the main component to be used ie app.js
 - index.css for global styling.
 - App.css for styling app component
-- all app information to be contained i package.json
+- all app information to be contained in package.json
 - public > index.html should have atleast one selector ie div tag with id
 
 ---
@@ -240,6 +238,71 @@ To add a style element in React we can either use inline CSS or import an extern
 
 State management is basically data and how we manage data.
 
+## useState()
+
+```javascript 
+const [students, setStudents] = useState(studentData); 
+// first variable is used to store data, second is method to update data. it will always be updated using this method.
+//usestate can be used to pass data to first variable.
+```
+
+## counter example for useState
+
+```javascript
+import { useState } from "react" 
+export default function Counter(){
+	const [counter,setCounter] = useState(0);
+	const onIncrease = () => { 
+		counter<10? setCounter(counter + 1):setCounter(10);
+		   }  
+
+    return(
+      <div style={{textAlign:"center",padding:"18px"}}>
+         <h2>Counter</h2>
+         <h3>{counter}</h3>
+         <button onClick={onIncrease}>increase</button>
+         <button onClick={
+         () => {counter > 0 ?setCounter(counter -1) : setCounter(0);}
+         }
+           >Decrease</button>
+
+        </div>
+    )}
+	```
+
+___
+# Props
+-  Props are basically parameters sent to a function.
+- In React they are defined as properties, which later sends an object to the component. 
+```javascript 
+export default function Name(props){
+  return <h1> {props.name} </h1>
+}
+
+<Name name="some text here">
+```
+-  multiple props can be sent to a component. or we can also send data as object.
+- Object recived in props will be called by `props.objectName.key`
+- ##  Props Destructuring
+```javascript
+  const {img, name} = person
+  console.log(name)
+ ```
+ - Prop Destructring is basically making variables out of an object.
+ - `{props.object && <h3>{props.object}</h3>}`  Use this to render the DOM element only when a value is available.
+ - ## Object Spreading
+ - We can send object properties as own objects by spreading them.
+```javascript
+	const object = [{id:1,name:"abc"},{id:2,name:"xyz"}]
+	//we can spread this object and pass it as a prop
+	return(
+		<SomeComponent key={someId} 
+		{...object}
+	)
+	//the component will recieve id and name directly, instead of recieving it via property
+```
+
+
 ---
 
 # FAQ/Questions
@@ -263,3 +326,53 @@ State management is basically data and how we manage data.
 5. **What does it mean for something to be "composable"?**
    _We have small pieces that we can put together to make something
    larger/greater than the individual pieces._
+
+6. **What do props help us accomplish?**
+   *Make a component more reusable.*
+
+
+7. How do you pass a prop into a component?
+```javascript
+<MyAwesomeHeader title="???" />
+```
+
+8. **Can I pass a custom prop (e.g. `blahblahblah={true}`) to a native
+   DOM element? (e.g. `<div blahblahblah={true}>`) Why or why not?**
+   *No, because the JSX we use to describe native DOM elements will
+   be turned into REAL DOM elements by React. And real DOM elements
+   only have the properties/attributes specified in the HTML specification.
+   (Which doesn't include properties like `blahblahblah`)*
+
+
+9. **How do I receive props in a component?**
+   ```javascript
+   function Navbar(props) {
+    console.log(props.blahblahblah)
+    return (
+        <header>
+            ...
+        </header>
+	    )
+	}
+```
+
+
+10. **What data type is `props` when the component receives it?**
+*An object!*
+
+11. **What does the `.map()` array method do?**
+*Returns a new array. Whatever gets returned from the callback
+function provided is placed at the same index in the new array.
+Usually we take the items from the original array and modify them
+in some way.*
+
+
+12. **What do we usually use `.map()` for in React?**
+*Convert an array of raw data into an array of JSX elements
+that can be displayed on the page.*
+
+
+13. **Why is using `.map()` better than just creating the components
+   manually by typing them out?**
+*It makes our code more "self-sustaining" - not requiring
+additional changes whenever the data changes.*

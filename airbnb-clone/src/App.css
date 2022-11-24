@@ -1,0 +1,14 @@
+* {
+  font-family: "Poppins", sans-serif;
+  scrollbar-color: hsl(0, 0%, 43%);
+  scrollbar-width: thin;
+}
+.card-list {
+  display: flex;
+  /* flex-wrap: nowrap; */
+  gap: 28px;
+  overflow: auto;
+}
+section {
+  padding: 20px;
+}
