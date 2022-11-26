@@ -2,10 +2,16 @@ import Header from "./components/Header";
 import StudentList from "./components/StudentList";
 import Counter from "./components/Counter";
 import CounterWithObject from "./components/CounterWithObject";
+import Data from "./components/Data";
+import { useState } from "react";
 function App() {
+  const [title, setTitle] = useState("some title");
+  const handleClick = () => {
+    setTitle("some changed title");
+  };
   return (
     <>
-      <Header />
+      {/* <Header />
       <h1> kuch bhi</h1>
       <p> dusra kuch bhi</p>
       <div className="abc">
@@ -21,7 +27,10 @@ function App() {
       <StudentList />
       <Counter />
 
-      <CounterWithObject />
+      <CounterWithObject /> */}
+      <h3>{title} </h3>
+
+      <Data ct={handleClick} />
     </>
   );
 }
