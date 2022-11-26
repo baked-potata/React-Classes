@@ -240,8 +240,8 @@ State management is basically data and how we manage data.
 
 ## useState()
 
-```javascript 
-const [students, setStudents] = useState(studentData); 
+```javascript
+const [students, setStudents] = useState(studentData);
 // first variable is used to store data, second is method to update data. it will always be updated using this method.
 //usestate can be used to pass data to first variable.
 ```
@@ -249,130 +249,122 @@ const [students, setStudents] = useState(studentData);
 ## counter example for useState
 
 ```javascript
-import { useState } from "react" 
-export default function Counter(){
-	const [counter,setCounter] = useState(0);
-	const onIncrease = () => { 
-		counter<10? setCounter(counter + 1):setCounter(10);
-		   }  
+import { useState } from "react";
+export default function Counter() {
+  const [counter, setCounter] = useState(0);
+  const onIncrease = () => {
+    counter < 10 ? setCounter(counter + 1) : setCounter(10);
+  };
+  return (
+    <div style={{ textAlign: "center", padding: "18px" }}>
+               <h2>Counter</h2>         <h3>{counter}</h3>         
+      <button onClick={onIncrease}>increase</button>         
+      <button
+        onClick={() => {
+          setCounter(counter - 1);
+        }}
+      >
+        Decrease
+      </button>
+             {" "}
+    </div>
+  );
+}
+```
 
-    return(
-      <div style={{textAlign:"center",padding:"18px"}}>
-         <h2>Counter</h2>
-         <h3>{counter}</h3>
-         <button onClick={onIncrease}>increase</button>
-         <button onClick={
-         () => {counter > 0 ?setCounter(counter -1) : setCounter(0);}
-         }
-           >Decrease</button>
+---
 
-        </div>
-    )}
-	```
-
-___
 # Props
--  Props are basically parameters sent to a function.
-- In React they are defined as properties, which later sends an object to the component. 
-```javascript 
+
+- Props refers to the properties passed into a component in order for it to work correctly, similar to how a function recieves parameters : "from above". A component recieving props isnt allowed to modify these props.(i.e. they are "immutable")
+
+* Props are basically parameters sent to a function.
+* In React they are defined as properties, which later sends an object to the component.
+
+```javascript
 export default function Name(props){
   return <h1> {props.name} </h1>
 }
 
 <Name name="some text here">
 ```
--  multiple props can be sent to a component. or we can also send data as object.
+
+- multiple props can be sent to a component. or we can also send data as object.
 - Object recived in props will be called by `props.objectName.key`
-- ##  Props Destructuring
+
+## Props Destructuring
+
 ```javascript
-  const {img, name} = person
-  console.log(name)
- ```
- - Prop Destructring is basically making variables out of an object.
- - `{props.object && <h3>{props.object}</h3>}`  Use this to render the DOM element only when a value is available.
- - ## Object Spreading
- - We can send object properties as own objects by spreading them.
+const { img, name } = person;
+console.log(name);
+```
+
+- Prop Destructring is basically making variables out of an object.
+- `{props.object && <h3>{props.object}</h3>}` Use this to render the DOM element only when a value is available.
+
+## Object Spreading
+
+- We can send object properties as own objects by spreading them.
+
 ```javascript
 	const object = [{id:1,name:"abc"},{id:2,name:"xyz"}]
 	//we can spread this object and pass it as a prop
 	return(
-		<SomeComponent key={someId} 
+		<SomeComponent key={someId}
 		{...object}
 	)
 	//the component will recieve id and name directly, instead of recieving it via property
 ```
 
-
 ---
 
 # FAQ/Questions
 
-1. **Why do we need to `import React from "react"` in our files?**
+1. **Why do we need to `import React from "react"` in our files?**\
    _React is what defines JSX_
 
-2. **If I were to console.log(page) in index.js, what would show up?**
-   \*A JavaScript object. React elements that describe what React should
-   eventually add to the real DOM for us.\*\*
+2. **If I were to console.log(page) in index.js, what would show up?**\
+   _A JavaScript object. React elements that describe what React should eventually add to the real DOM for us._
 
 3. **What's wrong with this code:**
-   `javascript const page = ( <h1>Hello</h1> <p>This is my website!</p> ) `
+   `javascript const page = ( <h1>Hello</h1> <p>This is my website!</p> ) `\
    _We need our JSX to be nested under a single parent element_
 
-4. **What does it mean for something to be "declarative" instead of "imperative"?**
-   \*Declarative means I can tell the computer WHAT to do
-   and expect it to handle the details. Imperative means I need
-   to tell it HOW to do each step.\*\*
+4. **What does it mean for something to be "declarative" instead of "imperative"?**\
+   _Declarative means I can tell the computer WHAT to do and expect it to handle the details. Imperative means I need to tell it HOW to do each step._
 
-5. **What does it mean for something to be "composable"?**
-   _We have small pieces that we can put together to make something
-   larger/greater than the individual pieces._
+5. **What does it mean for something to be "composable"?**\
+   _We have small pieces that we can put together to make something larger/greater than the individual pieces._
 
-6. **What do props help us accomplish?**
-   *Make a component more reusable.*
+6. **What do props help us accomplish?**\
+   _Make a component more reusable._
 
+7. **How do you pass a prop into a component?**\
 
-7. How do you pass a prop into a component?
 ```javascript
 <MyAwesomeHeader title="???" />
 ```
 
-8. **Can I pass a custom prop (e.g. `blahblahblah={true}`) to a native
-   DOM element? (e.g. `<div blahblahblah={true}>`) Why or why not?**
-   *No, because the JSX we use to describe native DOM elements will
-   be turned into REAL DOM elements by React. And real DOM elements
-   only have the properties/attributes specified in the HTML specification.
-   (Which doesn't include properties like `blahblahblah`)*
+8. **Can I pass a custom prop (e.g. `blahblahblah={true}`) to a native DOM element? (e.g. `<div blahblahblah={true}>`) Why or why not?**\
+   _No, because the JSX we use to describe native DOM elements will be turned into REAL DOM elements by React. And real DOM elements only have the properties/attributes specified in the HTML specification. (Which doesn't include properties like `blahblahblah`)_
 
+9. **How do I receive props in a component?**\
 
-9. **How do I receive props in a component?**
    ```javascript
    function Navbar(props) {
-    console.log(props.blahblahblah)
-    return (
-        <header>
-            ...
-        </header>
-	    )
-	}
-```
+     console.log(props.blahblahblah);
+     return <header>...</header>;
+   }
+   ```
 
+10. **What data type is `props` when the component receives it?** \
+    _An object!_
 
-10. **What data type is `props` when the component receives it?**
-*An object!*
+11. **What does the `.map()` array method do?**\
+    _Returns a new array. Whatever gets returned from the callback function provided is placed at the same index in the new array. Usually we take the items from the original array and modify them in some way._
 
-11. **What does the `.map()` array method do?**
-*Returns a new array. Whatever gets returned from the callback
-function provided is placed at the same index in the new array.
-Usually we take the items from the original array and modify them
-in some way.*
+12. **What do we usually use `.map()` for in React?**\
+    _Convert an array of raw data into an array of JSX elements that can be displayed on the page._
 
-
-12. **What do we usually use `.map()` for in React?**
-*Convert an array of raw data into an array of JSX elements
-that can be displayed on the page.*
-
-
-13. **Why is using `.map()` better than just creating the components
-   manually by typing them out?**
-*It makes our code more "self-sustaining" - not requiring
-additional changes whenever the data changes.*
+13. **Why is using `.map()` better than just creating the components manually by typing them out?**\
+    _It makes our code more "self-sustaining" - not requiring additional changes whenever the data changes._
