@@ -276,10 +276,10 @@ export default function Counter() {
 
 # Props
 
-- Props refers to the properties passed into a component in order for it to work correctly, similar to how a function recieves parameters : "from above". A component recieving props isnt allowed to modify these props.(i.e. they are "immutable")
+Props refers to the properties passed into a component in order for it to work correctly, similar to how a function recieves parameters : "from above". A component recieving props isnt allowed to modify these props.(i.e. they are "immutable")
 
-* Props are basically parameters sent to a function.
-* In React they are defined as properties, which later sends an object to the component.
+- Props are basically parameters sent to a function.
+- In React they are defined as properties, which later sends an object to the component.
 
 ```javascript
 export default function Name(props){
