@@ -236,6 +236,7 @@ To add a style element in React we can either use inline CSS or import an extern
 
 # State Management
 
+"State" refers to values that are managed by the component, similar to variables declared inside a funciton. Anytime you have changing calues that should always be saved/displayed, you'll likely be using states.
 State management is basically data and how we manage data.
 
 ## useState()
@@ -322,33 +323,26 @@ console.log(name);
 
 1. **Why do we need to `import React from "react"` in our files?**\
    _React is what defines JSX_
-
-2. **If I were to console.log(page) in index.js, what would show up?**\
+1. **If I were to console.log(page) in index.js, what would show up?**\
    _A JavaScript object. React elements that describe what React should eventually add to the real DOM for us._
-
-3. **What's wrong with this code:**
+1. **What's wrong with this code:**
    `javascript const page = ( <h1>Hello</h1> <p>This is my website!</p> ) `\
    _We need our JSX to be nested under a single parent element_
-
-4. **What does it mean for something to be "declarative" instead of "imperative"?**\
+1. **What does it mean for something to be "declarative" instead of "imperative"?**\
    _Declarative means I can tell the computer WHAT to do and expect it to handle the details. Imperative means I need to tell it HOW to do each step._
-
-5. **What does it mean for something to be "composable"?**\
+1. **What does it mean for something to be "composable"?**\
    _We have small pieces that we can put together to make something larger/greater than the individual pieces._
-
-6. **What do props help us accomplish?**\
+1. **What do props help us accomplish?**\
    _Make a component more reusable._
+1. **How do you pass a prop into a component?**
 
-7. **How do you pass a prop into a component?**\
+   ```javascript
+   <MyAwesomeHeader title="???" />
+   ```
 
-```javascript
-<MyAwesomeHeader title="???" />
-```
-
-8. **Can I pass a custom prop (e.g. `blahblahblah={true}`) to a native DOM element? (e.g. `<div blahblahblah={true}>`) Why or why not?**\
+1. **Can I pass a custom prop (e.g. `blahblahblah={true}`) to a native DOM element? (e.g. `<div blahblahblah={true}>`) Why or why not?**\
    _No, because the JSX we use to describe native DOM elements will be turned into REAL DOM elements by React. And real DOM elements only have the properties/attributes specified in the HTML specification. (Which doesn't include properties like `blahblahblah`)_
-
-9. **How do I receive props in a component?**\
+1. **How do I receive props in a component?**\
 
    ```javascript
    function Navbar(props) {
@@ -357,14 +351,26 @@ console.log(name);
    }
    ```
 
-10. **What data type is `props` when the component receives it?** \
-    _An object!_
+1. **What data type is `props` when the component receives it?** \
+   _An object!_
 
-11. **What does the `.map()` array method do?**\
-    _Returns a new array. Whatever gets returned from the callback function provided is placed at the same index in the new array. Usually we take the items from the original array and modify them in some way._
+1. **What does the `.map()` array method do?**\
+   _Returns a new array. Whatever gets returned from the callback function provided is placed at the same index in the new array. Usually we take the items from the original array and modify them in some way._
 
-12. **What do we usually use `.map()` for in React?**\
-    _Convert an array of raw data into an array of JSX elements that can be displayed on the page._
+1. **What do we usually use `.map()` for in React?**\
+   _Convert an array of raw data into an array of JSX elements that can be displayed on the page._
 
-13. **Why is using `.map()` better than just creating the components manually by typing them out?**\
-    _It makes our code more "self-sustaining" - not requiring additional changes whenever the data changes._
+1. **Why is using `.map()` better than just creating the components manually by typing them out?**\
+   _It makes our code more "self-sustaining" - not requiring additional changes whenever the data changes._
+
+1. **How would you describe the concept of "state"?**\
+   _A way for React to remember saved values from within a component.This is similar to declaring variables from within a component,with a few added bonuses (which we'll get to later)_
+
+1. **When would you want to use props instead of state?**\
+   _Anytime you want to pass data into a component so that component can determine what will get displayed on the screen._
+
+1. **When would you want to use state instead of props?**\
+   _Anytime you want a component to maintain some values from within the component. (And "remember" those values even when React re-renders the component)._
+
+1. **What does "immutable" mean? Are props immutable? Is state immutable?**\
+   _Unchanging. Props are immutable. State is mutable._
