@@ -242,9 +242,13 @@ State management is basically data and how we manage data.
 ## useState()
 
 ```javascript
+import { useState } from "react";
 const [students, setStudents] = useState(studentData);
 // first variable is used to store data, second is method to update data. it will always be updated using this method.
 //usestate can be used to pass data to first variable.
+
+// The above method is destructred method, to import the useState function
+//You can also use react.useState();
 ```
 
 ## counter example for useState
@@ -270,6 +274,39 @@ export default function Counter() {
              {" "}
     </div>
   );
+}
+```
+
+---
+
+```javascript
+const [count, setCount] = React.useState(0);
+/**
+ * Note: if you ever need the old value of state
+ * to help you determine the new value of state,
+ * you should pass a callback function to your
+ * state setter function instead of using
+ * state directly. This callback function will
+ * receive the old value of state as its parameter,
+ * which you can then use to determine your new
+ * value of state.
+ */
+function add() {
+  setCount((prevCount) => prevCount + 1);
+}
+```
+
+## Arrays with States.
+
+You can add values into an array but you cannot use any push or add method. You have to destructre the array, and then use a callback function to add the next item to the setState function.
+eg.
+
+```javascript
+const [array, setArray] = useState(["item 1", "item 2"]);
+
+function addItem() {
+  setArray((prevArray) => [...prevArray, "new item/javascript variable"]);
+  //set function is called when eventlistner calls addItem function. setFunction then proceeds to run a callback function, that has a parameter of our current state value. i.e. prevArray in this case. We then destructre the array, and add the next value inside it, hence updating the array. Destructring is done via spread operator. which is [...array]. it passes the value of one array to another object.
 }
 ```
 
@@ -303,6 +340,44 @@ console.log(name);
 - Prop Destructring is basically making variables out of an object.
 - `{props.object && <h3>{props.object}</h3>}` Use this to render the DOM element only when a value is available.
 
+## Array.map() to display all data via component.
+
+Array.map can be used on a state variable which later can be passed to a component, iether as an array or an object. Array.map() inserts data one by one inside the state variable and passes it to the component, repeating it till its done.
+`check the travel app for example`
+
+```javascript
+import data from './Data'
+function App() {
+  const [travelData, setTravelData] = useState(data);
+  return (
+    <div className="App">
+      <Navbar />
+      <div className="main">
+        {travelData.map((item) => {
+        //travelData is the state variable, carrying values from the 'data' object but when a state is loaded , only one value is passed.  .map allows us to cycle through all the items/object.
+        // item is the parameter that takes the current value from the array.
+          return <Main key={data.key} {...item} />;
+        })}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+
+function Main(props) {
+  console.log(props);
+  return (
+    <>
+    <h1> props.id </h1>
+      </>
+  );
+}
+
+export default Main;
+```
+
 ## Object Spreading
 
 - We can send object properties as own objects by spreading them.
@@ -316,6 +391,31 @@ console.log(name);
 	)
 	//the component will recieve id and name directly, instead of recieving it via property
 ```
+
+## Sending states through Props
+
+You can send a variable of useState through a prop. `prop = someStateVariable`
+
+## sending function through props
+
+You can also send a complete function as a prop object to a child component, but ccause the function is still in parent component, we can change the state value from child. we have to use `handleClick` variable to send a funtion.
+
+```javascript
+const [variable, setVariableFunc] = useState(1);
+function counter() {
+  setVariableFunc(counter + 1);
+}
+
+return <SomeComp handleClick={counter} />;
+
+//Component
+
+function SomeComp(props) {
+  return <button onClick={props.counter}>button appears </button>;
+}
+```
+
+- data cant be shared between 2 sibling components directly. no data can be passed upwards either.
 
 ---
 
@@ -374,3 +474,15 @@ console.log(name);
 
 1. **What does "immutable" mean? Are props immutable? Is state immutable?**\
    _Unchanging. Props are immutable. State is mutable._
+
+1. **You have 2 options for what you can pass in to a state setter function (e.g. `setCount`). What are they?**\
+
+   _a. New value of state (setCount(42))_\
+   _b. Callback function - whatever the callback function_\
+   _returns === new value of state_\
+
+1. **When would you want to pass the first option (from answer above) to the state setter function?**\
+   _Whenever you don't need the previous value of state to determine what the new value of state should be._\
+
+1. **When would you want to pass the second option (from answerabove) to the state setter function?**\
+   _Whenever you DO need the previous value to determine the new value_
