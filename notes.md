@@ -309,7 +309,25 @@ function addItem() {
   //set function is called when eventlistner calls addItem function. setFunction then proceeds to run a callback function, that has a parameter of our current state value. i.e. prevArray in this case. We then destructre the array, and add the next value inside it, hence updating the array. Destructring is done via spread operator. which is [...array]. it passes the value of one array to another object.
 }
 ```
-
+## Objects with States
+ Just like arrays we can also play with objects store in UseState variable
+ ```javascript 
+ const [contact, setContact] = React.useState({
+firstName: "John",
+lastName: "Doe",
+phone: "+1 (719) 555-1212",
+email: "itsmyrealname@example.com",
+isFavorite: false
+})
+ 
+ function toggleFavorite() {
+setContact(prevContact => ({
+...prevContact,
+//here the object is destructred first and then the object key that needs to be updated is updated
+isFavorite: !prevContact.isFavorite
+}))
+}
+```
 ---
 
 # Props
