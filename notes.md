@@ -435,6 +435,24 @@ function SomeComp(props) {
 
 - data cant be shared between 2 sibling components directly. no data can be passed upwards either.
 
+
+---
+# Conditional rendering
+use ternary operator to render the elements conditionally. 
+
+```javascript
+const item=true;
+
+const conditonalRender = () =>
+{
+if (item)
+return <h1>some div </h1>
+
+}
+
+{conditionalRender()}
+```
+
 ---
 
 # FAQ/Questions

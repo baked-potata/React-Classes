@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import data from "./Data.js";
+// import data from "./Data.js";
 
 function Data(props) {
   const [data, setdata] = useState("Data");
