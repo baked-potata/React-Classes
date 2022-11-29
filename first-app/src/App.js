@@ -62,12 +62,7 @@ return <h1>some div </h1>
 
     </Routes>
     </BrowserRouter>
-
-
     </> 
-
-
-
   );
 }
 
