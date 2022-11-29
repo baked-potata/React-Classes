@@ -323,7 +323,8 @@ isFavorite: false
  function toggleFavorite() {
 setContact(prevContact => ({
 ...prevContact,
-//here the object is destructred first and then the object key that needs to be updated is updated
+//...prevContact creates a copy/clone of the previous data 
+//here the object is spread first and then the object key that needs to be updated is updated
 isFavorite: !prevContact.isFavorite
 }))
 }
@@ -406,6 +407,7 @@ export default Main;
 	return(
 		<SomeComponent key={someId}
 		{...object}
+		
 	)
 	//the component will recieve id and name directly, instead of recieving it via property
 ```
@@ -497,6 +499,17 @@ import { BrowserRouter , Routes , Route,  Link } from 'react-router-dom'
     </Routes>
     </BrowserRouter>
 
+```
+
+---
+## JSON Server
+to connect our frontend to our database, we need to have access to it via API's (Application programming interfaces). 
+JSON Server is a fake API provider for learning how api's work.
+
+
+
+```bash
+sudo npm install -g json-server
 ```
 
 ---
