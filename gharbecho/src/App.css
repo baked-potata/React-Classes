@@ -1,0 +1,35 @@
+.navbar-brand {
+  font-family: "Qwigley", cursive;
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+.contact-us {
+  border: 1px solid black;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  color: black;
+}
+
+.contact-us:hover,
+.contact-us:active,
+.contact-us:focus,
+.contact-us:visited {
+  background-color: white !important;
+  color: black;
+}
+
+.city {
+  font-size: 1.3rem;
+  margin: 7px 7px;
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  padding: 0 5px;
+}
+
+.city > span {
+  margin-left: 1.5rem;
+  font-size: 0.8rem;
+  font-weight: vold;
+  margin-bottom: 8px;
+}
