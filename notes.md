@@ -309,26 +309,30 @@ function addItem() {
   //set function is called when eventlistner calls addItem function. setFunction then proceeds to run a callback function, that has a parameter of our current state value. i.e. prevArray in this case. We then destructre the array, and add the next value inside it, hence updating the array. Destructring is done via spread operator. which is [...array]. it passes the value of one array to another object.
 }
 ```
+
 ## Objects with States
- Just like arrays we can also play with objects store in UseState variable
- ```javascript 
- const [contact, setContact] = React.useState({
-firstName: "John",
-lastName: "Doe",
-phone: "+1 (719) 555-1212",
-email: "itsmyrealname@example.com",
-isFavorite: false
-})
- 
- function toggleFavorite() {
-setContact(prevContact => ({
-...prevContact,
-//...prevContact creates a copy/clone of the previous data 
-//here the object is spread first and then the object key that needs to be updated is updated
-isFavorite: !prevContact.isFavorite
-}))
+
+Just like arrays we can also play with objects store in UseState variable
+
+```javascript
+const [contact, setContact] = React.useState({
+  firstName: "John",
+  lastName: "Doe",
+  phone: "+1 (719) 555-1212",
+  email: "itsmyrealname@example.com",
+  isFavorite: false,
+});
+
+function toggleFavorite() {
+  setContact((prevContact) => ({
+    ...prevContact,
+    //...prevContact creates a copy/clone of the previous data
+    //here the object is spread first and then the object key that needs to be updated is updated
+    isFavorite: !prevContact.isFavorite,
+  }));
 }
 ```
+
 ---
 
 # Props
@@ -407,7 +411,7 @@ export default Main;
 	return(
 		<SomeComponent key={someId}
 		{...object}
-		
+
 	)
 	//the component will recieve id and name directly, instead of recieving it via property
 ```
@@ -437,50 +441,58 @@ function SomeComp(props) {
 
 - data cant be shared between 2 sibling components directly. no data can be passed upwards either.
 
-
 ---
+
 # Conditional rendering
-use ternary operator to render the elements conditionally. 
+
+use ternary operator to render the elements conditionally.
 
 ```javascript
-const item=true;
+const item = true;
 
-const conditonalRender = () =>
+const conditonalRender = () => {
+  if (item) return <h1>some div </h1>;
+};
+
 {
-if (item)
-return <h1>some div </h1>
-
+  conditionalRender();
 }
-
-{conditionalRender()}
 ```
-
 
 ---
 
 # React Router
-	React Router is a third party plugin that is commonly used in React. Normaly what React does, it changes the certain elements on pages when an interaction is made. On old wesites complete webpage had to be reloaded and all data was sent by server to make this happen. But with React, A reactApp is sent to the browser which handles the routes.
+
+    React Router is a third party plugin that is commonly used in React. Normaly what React does, it changes the certain elements on pages when an interaction is made. On old wesites complete webpage had to be reloaded and all data was sent by server to make this happen. But with React, A reactApp is sent to the browser which handles the routes.
+
 ### React Router Features
+
 - Conditionally render large parts of your page
 - Declarative API ( SOme hooks and components will be used to display the UI)
 - hooks
+
 #### Primary Components
+
 Routers
-- ``<BrowserRouter>``
-- ``<HashRouter>``
-Route Matchers
-- ``<Route>``
-- ``<Switch>``
-Navigation
-- ``<Link>``
-- ``<NavLink>``
+
+- `<BrowserRouter>`
+- `<HashRouter>`
+  Route Matchers
+- `<Route>`
+- `<Switch>`
+  Navigation
+- `<Link>`
+- `<NavLink>`
 - ``<Redirect>
+
 #### Hooks
+
 - `useHistory`
 - `useLocation`
 - `useParams`
 
 ## React Royter installation
+
 ```javascript
 npm install react-router-dom
 //verify in package.json for successfull installation
@@ -490,7 +502,7 @@ import { BrowserRouter , Routes , Route,  Link } from 'react-router-dom'
 <Link to="/">Home</Link>
 <Link className="nav-link" to="/About">About</Link>
 // anchor tag is changed by Link tag and href property is now changed to 'to'
-// File to be linked is placed as a value inside to property    
+// File to be linked is placed as a value inside to property   
 
 <BrowserRouter>
     <Routes>
@@ -502,15 +514,29 @@ import { BrowserRouter , Routes , Route,  Link } from 'react-router-dom'
 ```
 
 ---
+
 ## JSON Server
-to connect our frontend to our database, we need to have access to it via API's (Application programming interfaces). 
+
+to connect our frontend to our database, we need to have access to it via API's (Application programming interfaces).
 JSON Server is a fake API provider for learning how api's work.
-
-
 
 ```bash
 sudo npm install -g json-server
 ```
+
+Start a new watch json-server to watch for changes made to json files.
+
+```shell
+cd /path/to/file
+
+json-server --watch fileToWatch.json --port 3000
+#port needs to be different from react app port
+```
+
+You will recieve the link to your json file object.
+
+![[Pasted image 20221202093612.png]]
+
 
 ---
 
@@ -581,3 +607,11 @@ sudo npm install -g json-server
 
 1. **When would you want to pass the second option (from answerabove) to the state setter function?**\
    _Whenever you DO need the previous value to determine the new value_
+
+# Prop Drilling
+
+# Context
+
+# user Context
+
+# context provider
