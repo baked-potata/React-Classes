@@ -83,7 +83,7 @@ Components are basically fucntions that can be added to render function. compone
 
 Import Examples.
 
-```react
+```javascript
 import React from "react";
 
 import ReactDOM from "react-dom/client";
@@ -91,7 +91,7 @@ import ReactDOM from "react-dom/client";
 
 creating and exporting exporting component
 
-```react
+```javascript
 function Header(){
 return(
 <h1> some html data</h1
@@ -102,11 +102,11 @@ export default Header;
 
 We can also export components by adding `export default` before stating to write the component
 
-```react
+```javascript
 export default function Header()
 ```
 
-```react
+```javascript
 ReactDOM.createRoot(document.getElementById('dom-ID').render(<some HTML Tags>))
 ```
 
@@ -114,7 +114,7 @@ ReactDOM.createRoot(document.getElementById('dom-ID').render(<some HTML Tags>))
 
 The `ReactDOM.createRoot(document.getElementById('dom-ID')` part can be added to a variable.
 
-```react
+```javascript
 import Header from "./components/Header";
 //CreateRoot method defined
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -131,7 +131,7 @@ root.render(
 
 We can also use ReactDOM.render to render the component but it is an outdated method after react 18. use createRoot to render the component.
 
-```react
+```javascript
 ReactDOM.render(
   <div>
     <App />
@@ -142,7 +142,7 @@ ReactDOM.render(
 );
 ```
 
-```react
+```javascript
 ReactDOM.render(<some html tag/data> , document.getElementById("DOM Id that component will change"))
 ```
 
@@ -181,7 +181,7 @@ It is that tree like structre that can later be changed by using JS.
 
 - Make new components in diffrent file only
 - You can also import images using the `import` command. It helps in keeping the structre and file path save as it changes when building the project
-  ```react
+  ```javascript
   import logo from "./logo_image.png";
   ```
 
@@ -201,11 +201,11 @@ To add a style element in React we can either use inline CSS or import an extern
 
 - The major difference is gonna be how you write classes, instead of using `class` , we are gonna use `className` (use camel case).
 - The class needs to be imported.
-  ```react
+  ```javascript
   import "./Header.css";
   ```
 - For inline CSS we need to add the styles as a javascript object instead of what we used to do in normal HTML/CSS.
-  ```react
+  ```javascript
   <h1 style={{ color: "red", someStyle: "property", and: "so on" }}>
     Some text here
   </h1>
@@ -214,7 +214,7 @@ To add a style element in React we can either use inline CSS or import an extern
   ```
 - We can add style Objects in a variable,
 
-  ```react
+  ```javascript
   const styleElement = {
   	display:"flex",
   	fontSize:56,
@@ -241,7 +241,7 @@ State management is basically data and how we manage data.
 
 ## useState()
 
-```react
+```javascript
 import { useState } from "react";
 const [students, setStudents] = useState(studentData);
 // first variable is used to store data, second is method to update data. it will always be updated using this method.
@@ -253,7 +253,7 @@ const [students, setStudents] = useState(studentData);
 
 ## counter example for useState
 
-```react
+```javascript
 import { useState } from "react";
 export default function Counter() {
   const [counter, setCounter] = useState(0);
@@ -279,7 +279,7 @@ export default function Counter() {
 
 ---
 
-```react
+```javascript
 const [count, setCount] = React.useState(0);
 /**
  * Note: if you ever need the old value of state
@@ -301,7 +301,7 @@ function add() {
 You can add values into an array but you cannot use any push or add method. You have to destructre the array, and then use a callback function to add the next item to the setState function.
 eg.
 
-```react
+```javascript
 const [array, setArray] = useState(["item 1", "item 2"]);
 
 function addItem() {
@@ -314,7 +314,7 @@ function addItem() {
 
 Just like arrays we can also play with objects store in UseState variable
 
-```react
+```javascript
 const [contact, setContact] = React.useState({
   firstName: "John",
   lastName: "Doe",
@@ -342,7 +342,7 @@ Props refers to the properties passed into a component in order for it to work c
 - Props are basically parameters sent to a function.
 - In React they are defined as properties, which later sends an object to the component.
 
-```react
+```javascript
 export default function Name(props){
   return <h1> {props.name} </h1>
 }
@@ -355,7 +355,7 @@ export default function Name(props){
 
 ## Props Destructuring
 
-```react
+```javascript
 const { img, name } = person;
 console.log(name);
 ```
@@ -368,7 +368,7 @@ console.log(name);
 Array.map can be used on a state variable which later can be passed to a component, iether as an array or an object. Array.map() inserts data one by one inside the state variable and passes it to the component, repeating it till its done.
 `check the travel app for example`
 
-```react
+```javascript
 import data from './Data'
 function App() {
   const [travelData, setTravelData] = useState(data);
@@ -405,7 +405,7 @@ export default Main;
 
 - We can send object properties as own objects by spreading them.
 
-```react
+```javascript
 	const object = [{id:1,name:"abc"},{id:2,name:"xyz"}]
 	//we can spread this object and pass it as a prop
 	return(
@@ -422,13 +422,11 @@ You can send a variable of useState through a prop. `prop = someStateVariable`
 
 try to keep the state in app component or contexts.
 
-
-
 ## sending function through props
 
 You can also send a complete function as a prop object to a child component, but ccause the function is still in parent component, we can change the state value from child. we have to use `handleClick` variable to send a funtion.
 
-```react
+```javascript
 const [variable, setVariableFunc] = useState(1);
 function counter() {
   setVariableFunc(counter + 1);
@@ -440,8 +438,8 @@ return <SomeComp handleClick={counter} />;
 
 function SomeComp(props) {
   return <button onClick={props.handleClick}>button appears </button>;
-    //make sure to use the name of prop that is sent, not the function name. we sent handleClick and toggle function inside it, so hanleCLick will b called by onCLick and not counter. 
-    // check the box app for details i guess
+  //make sure to use the name of prop that is sent, not the function name. we sent handleClick and toggle function inside it, so hanleCLick will b called by onCLick and not counter.
+  // check the box app for details i guess
 }
 ```
 
@@ -449,27 +447,26 @@ function SomeComp(props) {
 
 ### Receiving data through props
 
-- You can communicate between different child/parent props using functions 
+- You can communicate between different child/parent props using functions
 - the function need to have some parameters which the child prop will later return when calling the function.
 - keep in mind to use the correct name from props.
 - the browser also return some syntheticBaseEvent so we need to get rid of them too, kinda
 
-```react
+```javascript
 function App() {
   const [box, setBox] = useState(boxes);
-    //state to get the initial boxes from json file/js file
+  //state to get the initial boxes from json file/js file
   const toggle = (id) => {
     console.log(id);
-      //arrow function where id is the parameter recieved from a child component.
-      setBox((prev) => {
-       //setBox with prev is used as holder for previous data, is a variable and any other variable name can be used
+    //arrow function where id is the parameter recieved from a child component.
+    setBox((prev) => {
+      //setBox with prev is used as holder for previous data, is a variable and any other variable name can be used
       return prev.map((prevBox) => {
-          //returning changed values to setBox,
-          //map function will loop and check our ternary codition. if found will update the array accordingly. if no match found, old array will be sent back as it is
+        //returning changed values to setBox,
+        //map function will loop and check our ternary codition. if found will update the array accordingly. if no match found, old array will be sent back as it is
         return prevBox.id === id ? { ...prevBox, on: !prevBox.on } : prevBox;
       });
     });
-      
   };
   return (
     <div className="boxholder">
@@ -484,16 +481,15 @@ function App() {
 
 function BoxC(props) {
   const { id, on } = props.items;
-    //prop destructuring to write code easily
+  //prop destructuring to write code easily
   return (
     <div
       className="box"
       style={{ backgroundColor: on ? "red" : "blue" }}
-        //some ternary for styling different elements
+      //some ternary for styling different elements
       onClick={() => props.handleClick(id)}
-    //focus here how we used an arrow function to call another function.
-    // As writtern above, an event is sent by browser, which is handled by () empty arrow function, and handleClick is called by it at the same time.Hence passing the id to parent component instead of event data.
-   
+      //focus here how we used an arrow function to call another function.
+      // As writtern above, an event is sent by browser, which is handled by () empty arrow function, and handleClick is called by it at the same time.Hence passing the id to parent component instead of event data.
     ></div>
   );
 }
@@ -501,17 +497,13 @@ function BoxC(props) {
 
 - `onClick={handleClick(id)}` cant be used as it will execute as soon as the component is rendered. KEEP THIS IN MIND.
 
-
-
-
-
 ---
 
 # Conditional rendering
 
 use ternary operator to render the elements conditionally.
 
-```react
+```javascript
 const item = true;
 
 const conditonalRender = () => {
@@ -537,22 +529,22 @@ But in React we have to prevent this default behaviour as all the components are
 
 We can do this by adding a onSubmit function to the form submit button.
 
-```react
+```javascript
 const onSubmit = (e) => {
-    //e is the parameter for event that is sent by the form
-    e.preventDefault();
-    //preventDefault() is a function used to stop the default
-    //behaviour of form
-    //we can add any function that we need to call here
-    someFunctionToRun()
-  };
+  //e is the parameter for event that is sent by the form
+  e.preventDefault();
+  //preventDefault() is a function used to stop the default
+  //behaviour of form
+  //we can add any function that we need to call here
+  someFunctionToRun();
+};
 
-return(
-    <form>
- 		<button className="btn btn-primary" onClick={onSubmit}>
-          Register
-        </button>
-	</form>
+return (
+  <form onSubmit={onSubmit}>
+    <button className="btn btn-primary" onClick={onSubmit}>
+      Register
+    </button>
+  </form>
 );
 ```
 
@@ -564,61 +556,223 @@ So basically whenever a value or data is changed in the form, it updates to the 
 
 To get the data from form, in React we have to use a function that takes complete event as a parameter.
 
-```react
-const [formData, setFormData] = useState()
+```javascript
+const [formData, setFormData] = useState();
 //a state is created here to store the data sent by the form
-const handleChange = (e) =>{
-    //e or event is the paramenter sent by browser to react whenever
-    // there is any change in the form or where ever this function
-    //is called. its an object that contains multiple items.
-    console.log(e.target)
-    //e.target is the dom element that inoked the handleChange function
-    //in this case, complete dom input written below will be loaded here.
-    console.log(e.target.value)
-    //value entered in the input box
-    console.log(e.target.name)
-    //name of the dom element and so on
-    
-    //we can also do object destructring to load specific elements from the event object recieed here
-    
-    const {name , value } = e.target
-    //it will automatically load these key value pairs from the target dom
-        setFormData((prev)=>(
-            {
-        	...prev, //recieveing the value from old state,
-           [name] : value //sending the key value pair object to the state
-        //ES6 allows you to use an expression in brackets []. It’ll then use the result of the expression as the property name of an object.JS computed properties
-            }
-        ))
-}
+const handleChange = (e) => {
+  //e or event is the paramenter sent by browser to react whenever
+  // there is any change in the form or where ever this function
+  //is called. its an object that contains multiple items.
+  console.log(e.target);
+  //e.target is the dom element that inoked the handleChange function
+  //in this case, complete dom input written below will be loaded here.
+  console.log(e.target.value);
+  //value entered in the input box
+  console.log(e.target.name);
+  //name of the dom element and so on
 
-return(
-	<form>
-    	<input type="text" name="name" onChange={handleChange} />
-    </form>		
-)
+  //we can also do object destructring to load specific elements from the event object recieed here
 
+  const { name, value } = e.target;
+  //it will automatically load these key value pairs from the target dom
+  setFormData((prev) => ({
+    ...prev, //recieveing the value from old state,
+    [name]: value, //sending the key value pair object to the state
+    //ES6 allows you to use an expression in brackets []. It’ll then use the result of the expression as the property name of an object.JS computed properties
+  }));
+};
+
+return (
+  <form>
+    <input type="text" name="name" onChange={handleChange} />
+  </form>
+);
 ```
-
-
 
 ### [Controlled Components](https://www.geeksforgeeks.org/what-are-controlled-components-in-reactjs/)
 
-Basically Reacts wants the components to be controlled by state and not the other way around. 
+Basically Reacts wants the components to be controlled by state and not the other way around.
 
-```react
-			<input
-                type="text"
-                placeholder="First Name"
-                onChange={handleChange}
-                name="firstName"
-                value={formData.firstName}
-            />
+```javascript
+<input
+  type="text"
+  placeholder="First Name"
+  onChange={handleChange}
+  name="firstName"
+  value={formData.firstName}
+/>
 ```
 
+Just set the value of input to the value of state.
 
+### Form elements
 
+#### TextArea
 
+Textarea is self closing in react and rest of the elements is same as a basic text input
+
+```javascript
+<textarea
+  value={formData.comments}
+  placeholder="Comments"
+  onChange={handleChange}
+  name="comments"
+/>
+```
+
+#### Radio Buttons
+
+Radio buttons should have same name so that only one can be selected at one time. along with that they need to have a `value` so that the value of button can be sent to react. but that might have issue with controlled component. Hence a checked property is used to controll the radio buttons.
+
+Here we can see the checked property is being used to check whether the state matches the value or not. Hence controlling the element.
+
+```javascript
+const [formData, setFormData] = React.useState({
+  firstName: "",
+  lastName: "",
+  email: "",
+  comments: "",
+  isFriendly: true,
+  employment: "",
+});
+console.log(formData.employment);
+
+function handleChange(event) {
+  const { name, value, type, checked } = event.target;
+  setFormData((prevFormData) => {
+    return {
+      ...prevFormData,
+      [name]: type === "checkbox" ? checked : value,
+    };
+  });
+}
+
+return (
+  <form>
+    <fieldset>
+      <legend>Current employment status</legend>
+
+      <input
+        type="radio"
+        id="unemployed"
+        name="employment"
+        value="unemployed"
+        checked={formData.employment === "unemployed"}
+        onChange={handleChange}
+      />
+      <label htmlFor="unemployed">Unemployed</label>
+      <br />
+
+      <input
+        type="radio"
+        id="part-time"
+        name="employment"
+        value="part-time"
+        checked={formData.employment === "part-time"}
+        onChange={handleChange}
+      />
+      <label htmlFor="part-time">Part-time</label>
+      <br />
+
+      <input
+        type="radio"
+        id="full-time"
+        name="employment"
+        value="full-time"
+        checked={formData.employment === "full-time"}
+        onChange={handleChange}
+      />
+      <label htmlFor="full-time">Full-time</label>
+      <br />
+    </fieldset>
+  </form>
+);
+```
+
+#### CheckBoxes
+
+A checked property is implemented in checkboxes which will later be sent to handleChange. type is compared in a ternary operator, if it is checkbox, the checked property is updated instead of value like in text inputs.
+
+```javascript
+const [formData, setFormData] = React.useState({
+  firstName: "",
+  lastName: "",
+  email: "",
+  comments: "",
+  isFriendly: true,
+});
+
+function handleChange(event) {
+  const { name, value, type, checked } = event.target;
+  setFormData((prevFormData) => {
+    return {
+      ...prevFormData,
+      [name]: type === "checkbox" ? checked : value,
+    };
+  });
+}
+
+return (
+  <form>
+    <input
+      type="checkbox"
+      id="isFriendly"
+      checked={formData.isFriendly}
+      onChange={handleChange}
+      name="isFriendly"
+    />
+    <label htmlFor="isFriendly">Are you friendly?</label>
+    //htmlFor is used here to point the label to checkbox with id mentioned here
+    <br />
+  </form>
+);
+```
+
+#### Select and Options
+
+same as anyother text input
+
+```javascript
+const [formData, setFormData] = React.useState(
+        {
+            favColor: ""
+        }
+    )
+    console.log(formData.favColor)
+
+    function handleChange(event) {
+        console.log(event)
+        const {name, value, type, checked} = event.target
+        setFormData(prevFormData => {
+            return {
+                ...prevFormData,
+                [name]: type === "checkbox" ? checked : value
+            }
+        })
+    }
+
+return (
+<form>
+<label htmlFor="favColor">What is your favorite color?</label>
+            <br />
+            <select
+                id="favColor"
+                value={formData.favColor}
+                onChange={handleChange}
+                name="favColor"
+            >
+                <option value="">-- Choose --</option>
+                <option value="red">Red</option>
+                <option value="orange">Orange</option>
+                <option value="yellow">Yellow</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+                <option value="indigo">Indigo</option>
+                <option value="violet">Violet</option>
+            </select>
+<form>
+                    )
+```
 
 ---
 
@@ -654,7 +808,7 @@ Routers
 
 ## React Router installation
 
-```react
+```javascript
 npm install react-router-dom
 //verify in package.json for successfull installation
 import { BrowserRouter , Routes , Route,  Link } from 'react-router-dom'
@@ -717,7 +871,7 @@ You will recieve the link to your json file object.
    _Make a component more reusable._
 1. **How do you pass a prop into a component?**
 
-   ```react
+   ```javascript
    <MyAwesomeHeader title="???" />
    ```
 
@@ -725,7 +879,7 @@ You will recieve the link to your json file object.
    _No, because the JSX we use to describe native DOM elements will be turned into REAL DOM elements by React. And real DOM elements only have the properties/attributes specified in the HTML specification. (Which doesn't include properties like `blahblahblah`)_
 1. **How do I receive props in a component?**\
 
-   ```react
+   ```javascript
    function Navbar(props) {
      console.log(props.blahblahblah);
      return <header>...</header>;
@@ -777,6 +931,27 @@ You will recieve the link to your json file object.
 
 1. **What if you need to decide between > 2 options on what to display?**\
    _Use an `if...else if... else` conditional or a `switch` statement_
+1. **In a vanilla JS app, at what point in the form submission process do you gather all the data from the filled-out form?**
+   _Right before the form is submitted._
+
+1. **In a React app, when do you gather all the data from the filled-out form?**
+   _As the form is being filled out. The data is all held in local state._
+
+1. **Which attribute in the form elements (value, name, onChange, etc.) should match the property name being held in state for that input?**\
+   `name` _property._
+
+1. **What's different about saving the data from a checkbox element vs. other form elements?**\
+   _A checkbox uses the `checked` property to determine what should
+   be saved in state. Other form elements use the `value` property instead._
+
+1. **How do you watch for a form submit? How can you trigger a form submit?**
+   
+   - _Can watch for the submit with an onSubmit handler on the `form` element._
+   
+   - _Can trigger the form submit with a button click._
+     
+
+1.
 
 # Prop Drilling
 
