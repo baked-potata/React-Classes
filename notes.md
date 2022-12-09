@@ -83,7 +83,7 @@ Components are basically fucntions that can be added to render function. compone
 
 Import Examples.
 
-```javascript
+```react
 import React from "react";
 
 import ReactDOM from "react-dom/client";
@@ -91,7 +91,7 @@ import ReactDOM from "react-dom/client";
 
 creating and exporting exporting component
 
-```javascript
+```react
 function Header(){
 return(
 <h1> some html data</h1
@@ -102,11 +102,11 @@ export default Header;
 
 We can also export components by adding `export default` before stating to write the component
 
-```javascript
+```react
 export default function Header()
 ```
 
-```javascript
+```react
 ReactDOM.createRoot(document.getElementById('dom-ID').render(<some HTML Tags>))
 ```
 
@@ -114,7 +114,7 @@ ReactDOM.createRoot(document.getElementById('dom-ID').render(<some HTML Tags>))
 
 The `ReactDOM.createRoot(document.getElementById('dom-ID')` part can be added to a variable.
 
-```javascript
+```react
 import Header from "./components/Header";
 //CreateRoot method defined
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -131,7 +131,7 @@ root.render(
 
 We can also use ReactDOM.render to render the component but it is an outdated method after react 18. use createRoot to render the component.
 
-```javascript
+```react
 ReactDOM.render(
   <div>
     <App />
@@ -142,7 +142,7 @@ ReactDOM.render(
 );
 ```
 
-```javascript
+```react
 ReactDOM.render(<some html tag/data> , document.getElementById("DOM Id that component will change"))
 ```
 
@@ -181,7 +181,7 @@ It is that tree like structre that can later be changed by using JS.
 
 - Make new components in diffrent file only
 - You can also import images using the `import` command. It helps in keeping the structre and file path save as it changes when building the project
-  ```javascript
+  ```react
   import logo from "./logo_image.png";
   ```
 
@@ -201,11 +201,11 @@ To add a style element in React we can either use inline CSS or import an extern
 
 - The major difference is gonna be how you write classes, instead of using `class` , we are gonna use `className` (use camel case).
 - The class needs to be imported.
-  ```javascript
+  ```react
   import "./Header.css";
   ```
 - For inline CSS we need to add the styles as a javascript object instead of what we used to do in normal HTML/CSS.
-  ```javascript
+  ```react
   <h1 style={{ color: "red", someStyle: "property", and: "so on" }}>
     Some text here
   </h1>
@@ -214,7 +214,7 @@ To add a style element in React we can either use inline CSS or import an extern
   ```
 - We can add style Objects in a variable,
 
-  ```javascript
+  ```react
   const styleElement = {
   	display:"flex",
   	fontSize:56,
@@ -241,7 +241,7 @@ State management is basically data and how we manage data.
 
 ## useState()
 
-```javascript
+```react
 import { useState } from "react";
 const [students, setStudents] = useState(studentData);
 // first variable is used to store data, second is method to update data. it will always be updated using this method.
@@ -253,7 +253,7 @@ const [students, setStudents] = useState(studentData);
 
 ## counter example for useState
 
-```javascript
+```react
 import { useState } from "react";
 export default function Counter() {
   const [counter, setCounter] = useState(0);
@@ -279,7 +279,7 @@ export default function Counter() {
 
 ---
 
-```javascript
+```react
 const [count, setCount] = React.useState(0);
 /**
  * Note: if you ever need the old value of state
@@ -301,7 +301,7 @@ function add() {
 You can add values into an array but you cannot use any push or add method. You have to destructre the array, and then use a callback function to add the next item to the setState function.
 eg.
 
-```javascript
+```react
 const [array, setArray] = useState(["item 1", "item 2"]);
 
 function addItem() {
@@ -314,7 +314,7 @@ function addItem() {
 
 Just like arrays we can also play with objects store in UseState variable
 
-```javascript
+```react
 const [contact, setContact] = React.useState({
   firstName: "John",
   lastName: "Doe",
@@ -342,7 +342,7 @@ Props refers to the properties passed into a component in order for it to work c
 - Props are basically parameters sent to a function.
 - In React they are defined as properties, which later sends an object to the component.
 
-```javascript
+```react
 export default function Name(props){
   return <h1> {props.name} </h1>
 }
@@ -355,7 +355,7 @@ export default function Name(props){
 
 ## Props Destructuring
 
-```javascript
+```react
 const { img, name } = person;
 console.log(name);
 ```
@@ -368,7 +368,7 @@ console.log(name);
 Array.map can be used on a state variable which later can be passed to a component, iether as an array or an object. Array.map() inserts data one by one inside the state variable and passes it to the component, repeating it till its done.
 `check the travel app for example`
 
-```javascript
+```react
 import data from './Data'
 function App() {
   const [travelData, setTravelData] = useState(data);
@@ -405,7 +405,7 @@ export default Main;
 
 - We can send object properties as own objects by spreading them.
 
-```javascript
+```react
 	const object = [{id:1,name:"abc"},{id:2,name:"xyz"}]
 	//we can spread this object and pass it as a prop
 	return(
@@ -420,11 +420,15 @@ export default Main;
 
 You can send a variable of useState through a prop. `prop = someStateVariable`
 
+try to keep the state in app component or contexts.
+
+
+
 ## sending function through props
 
 You can also send a complete function as a prop object to a child component, but ccause the function is still in parent component, we can change the state value from child. we have to use `handleClick` variable to send a funtion.
 
-```javascript
+```react
 const [variable, setVariableFunc] = useState(1);
 function counter() {
   setVariableFunc(counter + 1);
@@ -435,11 +439,63 @@ return <SomeComp handleClick={counter} />;
 //Component
 
 function SomeComp(props) {
-  return <button onClick={props.counter}>button appears </button>;
+  return <button onClick={props.handleClick}>button appears </button>;
+    //make sure to use the name of prop that is sent, not the function name. we sent handleClick and toggle function inside it, so hanleCLick will b called by onCLick and not counter. 
+    // check the box app for details i guess
 }
 ```
 
 - data cant be shared between 2 sibling components directly. no data can be passed upwards either.
+
+### Receiving data through props
+
+- You can communicate between different child/parent props using functions 
+- the function need to have some parameters which the child prop will later return when calling the function.
+- keep in mind to use the correct name from props.
+- the browser also return some event so we need to get rid of them too, kinda
+
+```react
+function App() {
+  const [box, setBox] = useState(boxes);
+    //state to get the initial boxes from json file/js file
+  const toggle = (id) => {
+    console.log(id);
+      //arrow function where id is the parameter recieved from a child component.
+      
+  };
+  return (
+    <div className="boxholder">
+      {box.map((item) => {
+        //item is the data from state, i.e. object in box state
+        return <BoxC key={item.id} items={item} handleClick={toggle} />;
+        //rendering the prop BoxC and sending props + toggle function
+      })}
+    </div>
+  );
+}
+
+function BoxC(props) {
+  const { id, on } = props.items;
+    //prop destructuring to write code easily
+  return (
+    <div
+      className="box"
+      style={{ backgroundColor: on ? "red" : "blue" }}
+        //some ternary for styling different elements
+      onClick={() => props.handleClick(id)}
+    //focus here how we used an arrow function to call another function.
+    // As writtern above, an event is sent by browser, which is handled by () empty arrow function, and handleClick is called by it at the same time.Hence passing the id to parent component instead of event data.
+   
+    ></div>
+  );
+}
+```
+
+- `onClick={handleClick(id)}` cant be used as it will execute as soon as the component is rendered. KEEP THIS IN MIND.
+
+
+
+
 
 ---
 
@@ -447,7 +503,7 @@ function SomeComp(props) {
 
 use ternary operator to render the elements conditionally.
 
-```javascript
+```react
 const item = true;
 
 const conditonalRender = () => {
@@ -461,9 +517,91 @@ const conditonalRender = () => {
 
 ---
 
+# React Forms
+
+Forms in React are a bit different than regular forms. Regular forms in HTML usually have a default function/event/behaviour set to them, so whenever we submit HTML form it takes us to the action page, for ex
+
+```html
+<form action="action.php" method="POST"></form>
+```
+
+But in React we have to prevent this default behaviour as all the components are supposed to be loaded on a single page.
+
+We can do this by adding a onSubmit function to the form submit button.
+
+```react
+const onSubmit = (e) => {
+    //e is the parameter for event that is sent by the form
+    e.preventDefault();
+    //preventDefault() is a function used to stop the default
+    //behaviour of form
+    //we can add any function that we need to call here
+    someFunctionToRun()
+  };
+
+return(
+    <form>
+ 		<button className="btn btn-primary" onClick={onSubmit}>
+          Register
+        </button>
+	</form>
+);
+```
+
+In react we keep the form data in a state, which have to be up to date at the time of submission. For that create a `handleChange` function which runs on `<input onChange={handleChange}`.
+
+So basically whenever a value or data is changed in the form, it updates to the state.
+
+### Getting the data from form
+
+To get the data from form, in React we have to use a function that takes complete event as a parameter.
+
+```react
+const [formData, setFormData] = useState()
+//a state is created here to store the data sent by the form
+const handleChange = (e) =>{
+    //e or event is the paramenter sent by browser to react whenever
+    // there is any change in the form or where ever this function
+    //is called. its an object that contains multiple items.
+    console.log(e.target)
+    //e.target is the dom element that inoked the handleChange function
+    //in this case, complete dom input written below will be loaded here.
+    console.log(e.target.value)
+    //value entered in the input box
+    console.log(e.target.name)
+    //name of the dom element and so on
+    
+    //we can also do object destructring to load specific elements from the event object recieed here
+    
+    const {name , value } = e.target
+    //it will automatically load these key value pairs from the target dom
+        setFormData((prev)=>(
+            {
+        	...prev, //recieveing the value from old state,
+           [name] : value //sending the key value pair object to the state
+        }
+        ))
+}
+
+return(
+	<form>
+    	<input type="text" name="name" onChange={handleChange} />
+    </form>		
+)
+
+```
+
+
+
+
+
+
+
+---
+
 # React Router
 
-    React Router is a third party plugin that is commonly used in React. Normaly what React does, it changes the certain elements on pages when an interaction is made. On old wesites complete webpage had to be reloaded and all data was sent by server to make this happen. But with React, A reactApp is sent to the browser which handles the routes.
+React Router is a third party plugin that is commonly used in React. Normaly what React does, it changes the certain elements on pages when an interaction is made. On old wesites complete webpage had to be reloaded and all data was sent by server to make this happen. But with React, A reactApp is sent to the browser which handles the routes.
 
 ### React Router Features
 
@@ -483,7 +621,7 @@ Routers
   Navigation
 - `<Link>`
 - `<NavLink>`
-- ``<Redirect>
+- `<Redirect>`
 
 #### Hooks
 
@@ -491,9 +629,9 @@ Routers
 - `useLocation`
 - `useParams`
 
-## React Royter installation
+## React Router installation
 
-```javascript
+```react
 npm install react-router-dom
 //verify in package.json for successfull installation
 import { BrowserRouter , Routes , Route,  Link } from 'react-router-dom'
@@ -537,42 +675,34 @@ You will recieve the link to your json file object.
 
 ![[Pasted image 20221202093612.png]]
 
-
 ---
 
 # FAQ/Questions
 
 1. **Why do we need to `import React from "react"` in our files?**\
    _React is what defines JSX_
-   
 1. **If I were to console.log(page) in index.js, what would show up?**\
    _A JavaScript object. React elements that describe what React should eventually add to the real DOM for us._
-   
 1. **What's wrong with this code:**
    `javascript const page = ( <h1>Hello</h1> <p>This is my website!</p> ) `\
    _We need our JSX to be nested under a single parent element_
-   
 1. **What does it mean for something to be "declarative" instead of "imperative"?**\
    _Declarative means I can tell the computer WHAT to do and expect it to handle the details. Imperative means I need to tell it HOW to do each step._
-   
 1. **What does it mean for something to be "composable"?**\
    _We have small pieces that we can put together to make something larger/greater than the individual pieces._
-   
 1. **What do props help us accomplish?**\
    _Make a component more reusable._
-   
 1. **How do you pass a prop into a component?**
 
-   ```javascript
+   ```react
    <MyAwesomeHeader title="???" />
    ```
 
 1. **Can I pass a custom prop (e.g. `blahblahblah={true}`) to a native DOM element? (e.g. `<div blahblahblah={true}>`) Why or why not?**\
    _No, because the JSX we use to describe native DOM elements will be turned into REAL DOM elements by React. And real DOM elements only have the properties/attributes specified in the HTML specification. (Which doesn't include properties like `blahblahblah`)_
-   
 1. **How do I receive props in a component?**\
 
-   ```javascript
+   ```react
    function Navbar(props) {
      console.log(props.blahblahblah);
      return <header>...</header>;
@@ -603,31 +733,27 @@ You will recieve the link to your json file object.
 1. **What does "immutable" mean? Are props immutable? Is state immutable?**\
    _Unchanging. Props are immutable. State is mutable._
 
-1. **You have 2 options for what you can pass in to a state setter function (e.g. `setCount`). What are they?**\
+1. **You have 2 options for what you can pass in to a state setter function (e.g. `setCount`). What are they?**
 
    _a. New value of state (setCount(42))_\
    _b. Callback function - whatever the callback function_\
    _returns === new value of state_\
 
 1. **When would you want to pass the first option (from answer above) to the state setter function?**\
-   _Whenever you don't need the previous value of state to determine what the new value of state should be._\
+   _Whenever you don't need the previous value of state to determine what the new value of state should be._
 
 1. **When would you want to pass the second option (from answerabove) to the state setter function?**\
    _Whenever you DO need the previous value to determine the new value_
-   
-1. **What is "conditional rendering"?**
-    _When we want to only sometimes display something on the page based on a condition of some sort_
+1. **What is "conditional rendering"?**\
+   _When we want to only sometimes display something on the page based on a condition of some sort_
 
-1. **When would you use &&?**
-    _When you want to either display something or NOT display it_
-    
-1. **When would you use a ternary?**
-     _When you need to decide which thing among 2 options to display_
+1. **When would you use &&?**\
+   _When you want to either display something or NOT display it_
+1. **When would you use a ternary?**\
+   _When you need to decide which thing among 2 options to display_
 
-1. **What if you need to decide between > 2 options on what to display?**
-     _Use an `if...else if... else` conditional or a `switch` statement_
-
-
+1. **What if you need to decide between > 2 options on what to display?**\
+   _Use an `if...else if... else` conditional or a `switch` statement_
 
 # Prop Drilling
 
