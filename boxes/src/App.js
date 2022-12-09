@@ -6,7 +6,11 @@ import BoxC from "./component/BoxC";
 function App() {
   const [box, setBox] = useState(boxes);
   const toggle = (id) => {
-    console.log(id);
+    setBox((prev) => {
+      return prev.map((prevBox) => {
+        return prevBox.id === id ? { ...prevBox, on: !prevBox.on } : prevBox;
+      });
+    });
   };
   return (
     <div className="boxholder">

@@ -452,7 +452,7 @@ function SomeComp(props) {
 - You can communicate between different child/parent props using functions 
 - the function need to have some parameters which the child prop will later return when calling the function.
 - keep in mind to use the correct name from props.
-- the browser also return some event so we need to get rid of them too, kinda
+- the browser also return some syntheticBaseEvent so we need to get rid of them too, kinda
 
 ```react
 function App() {
@@ -461,6 +461,14 @@ function App() {
   const toggle = (id) => {
     console.log(id);
       //arrow function where id is the parameter recieved from a child component.
+      setBox((prev) => {
+       //setBox with prev is used as holder for previous data, is a variable and any other variable name can be used
+      return prev.map((prevBox) => {
+          //returning changed values to setBox,
+          //map function will loop and check our ternary codition. if found will update the array accordingly. if no match found, old array will be sent back as it is
+        return prevBox.id === id ? { ...prevBox, on: !prevBox.on } : prevBox;
+      });
+    });
       
   };
   return (
@@ -579,7 +587,8 @@ const handleChange = (e) =>{
             {
         	...prev, //recieveing the value from old state,
            [name] : value //sending the key value pair object to the state
-        }
+        //ES6 allows you to use an expression in brackets []. It’ll then use the result of the expression as the property name of an object.JS computed properties
+            }
         ))
 }
 
@@ -592,6 +601,20 @@ return(
 ```
 
 
+
+### [Controlled Components](https://www.geeksforgeeks.org/what-are-controlled-components-in-reactjs/)
+
+Basically Reacts wants the components to be controlled by state and not the other way around. 
+
+```react
+			<input
+                type="text"
+                placeholder="First Name"
+                onChange={handleChange}
+                name="firstName"
+                value={formData.firstName}
+            />
+```
 
 
 
@@ -673,7 +696,7 @@ json-server --watch fileToWatch.json --port 3000
 
 You will recieve the link to your json file object.
 
-![[Pasted image 20221202093612.png]]
+![[Pasted image 20221202093612.png]](https://github.com/baked-potata/React-Classes/blob/master/Pasted%20image%2020221202093612.png)
 
 ---
 
