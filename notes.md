@@ -544,17 +544,23 @@ You will recieve the link to your json file object.
 
 1. **Why do we need to `import React from "react"` in our files?**\
    _React is what defines JSX_
+   
 1. **If I were to console.log(page) in index.js, what would show up?**\
    _A JavaScript object. React elements that describe what React should eventually add to the real DOM for us._
+   
 1. **What's wrong with this code:**
    `javascript const page = ( <h1>Hello</h1> <p>This is my website!</p> ) `\
    _We need our JSX to be nested under a single parent element_
+   
 1. **What does it mean for something to be "declarative" instead of "imperative"?**\
    _Declarative means I can tell the computer WHAT to do and expect it to handle the details. Imperative means I need to tell it HOW to do each step._
+   
 1. **What does it mean for something to be "composable"?**\
    _We have small pieces that we can put together to make something larger/greater than the individual pieces._
+   
 1. **What do props help us accomplish?**\
    _Make a component more reusable._
+   
 1. **How do you pass a prop into a component?**
 
    ```javascript
@@ -563,6 +569,7 @@ You will recieve the link to your json file object.
 
 1. **Can I pass a custom prop (e.g. `blahblahblah={true}`) to a native DOM element? (e.g. `<div blahblahblah={true}>`) Why or why not?**\
    _No, because the JSX we use to describe native DOM elements will be turned into REAL DOM elements by React. And real DOM elements only have the properties/attributes specified in the HTML specification. (Which doesn't include properties like `blahblahblah`)_
+   
 1. **How do I receive props in a component?**\
 
    ```javascript
@@ -607,6 +614,20 @@ You will recieve the link to your json file object.
 
 1. **When would you want to pass the second option (from answerabove) to the state setter function?**\
    _Whenever you DO need the previous value to determine the new value_
+   
+1. **What is "conditional rendering"?**
+    _When we want to only sometimes display something on the page based on a condition of some sort_
+
+1. **When would you use &&?**
+    _When you want to either display something or NOT display it_
+    
+1. **When would you use a ternary?**
+     _When you need to decide which thing among 2 options to display_
+
+1. **What if you need to decide between > 2 options on what to display?**
+     _Use an `if...else if... else` conditional or a `switch` statement_
+
+
 
 # Prop Drilling
 
