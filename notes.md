@@ -513,6 +513,15 @@ const conditonalRender = () => {
 {
   conditionalRender();
 }
+
+ <div>
+      <h1>Hello!</h1>
+      {unreadMessages.length > 0 &&
+        <h2>
+          You have {unreadMessages.length} unread messages.
+        </h2>
+      }
+    </div>
 ```
 
 ---
@@ -960,3 +969,8 @@ You will recieve the link to your json file object.
 # user Context
 
 # context provider
+
+# token generation
+
+# useNavigate for redirection
+
