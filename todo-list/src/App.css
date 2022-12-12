@@ -13,3 +13,11 @@ body {
 .navbar-brand > img {
   width: 60%;
 }
+
+.abc {
+  height: calc(100vh - 59px);
+}
+
+.home-card {
+  height: 400px;
+}

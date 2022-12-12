@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -17,6 +17,9 @@ function App() {
       <BrowserRouter>
         <Navigation />
         <Routes>
+          <Route path="/" element={<Navigate replace to="/login" />}></Route>
+          {/* using navigate replace to option to show login page */}
+
           <Route path="/" element={<Home />}>
             {/* adding child routes or login and register page */}
             <Route path="/login" element={<Login />} />

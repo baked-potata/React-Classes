@@ -28,35 +28,27 @@ function Navigation(props) {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" activeClassName="active" to="/about">
+              <Link className="nav-link" to="/about">
                 About
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" activeClassName="active" to="/contact">
+              <Link className="nav-link" to="/contact">
                 Contact
               </Link>
             </li>
             <li className="nav-item">
-              <Link
-                className="nav-link"
-                activeClassName="active"
-                to="/create-task"
-              >
+              <Link className="nav-link" to="/create-task">
                 Create Task
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" activeClassName="active" to="/profile">
+              <Link className="nav-link" to="/profile">
                 Profile
               </Link>
             </li>
             <li className="nav-item">
-              <Link
-                className="nav-link"
-                activeClassName="active"
-                to="/task-list"
-              >
+              <Link className="nav-link" to="/task-list">
                 Task List
               </Link>
             </li>
