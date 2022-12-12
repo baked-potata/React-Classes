@@ -6,7 +6,7 @@
 
 ### Babel
 
-Balel is the compiler for react.
+Babel is the compiler for react.
 
 ## Why react
 
@@ -64,7 +64,7 @@ Npm start is used to start the application in web browser with live preview.
 
 ## JSX
 
-Javascript XML.
+JavaScript XML.
 
 - js but kinda like html.
 - kinda like a function, when html element are passed to it it returns js object that can be used to create actual elements.
@@ -74,7 +74,7 @@ Javascript XML.
 
 ## Components
 
-_Composable/Resuable elements_
+_Composable/Reusable elements_
 Components are basically fucntions that can be added to render function. components can be defined using normal js function() and needs to be exported. Later they can be used for rendering. Components also need to be imported first from the specific file.
 
 - Component should always start with capital, use pascal case.
@@ -166,7 +166,7 @@ ReactDOM.render(<some html tag/data> , document.getElementById("DOM Id that comp
 
 ---
 
-# Additonal
+# Additional
 
 - Single Page application loads just one page ie index.html
 - other pages are made in components
@@ -185,13 +185,13 @@ It is that tree like structre that can later be changed by using JS.
   import logo from "./logo_image.png";
   ```
 
-## Folder Structre notes
+## Folder Structure notes
 
 - <App /> is the main component to be used ie app.js
 - index.css for global styling.
 - App.css for styling app component
 - all app information to be contained in package.json
-- public > index.html should have atleast one selector ie div tag with id
+- public > index.html should have at least one selector i.e. div tag with id
 
 ---
 
@@ -236,7 +236,7 @@ To add a style element in React we can either use inline CSS or import an extern
 
 # State Management
 
-"State" refers to values that are managed by the component, similar to variables declared inside a funciton. Anytime you have changing calues that should always be saved/displayed, you'll likely be using states.
+"State" refers to values that are managed by the component, similar to variables declared inside a function. Anytime you have changing values that should always be saved/displayed, you'll likely be using states.
 State management is basically data and how we manage data.
 
 ## useState()
@@ -298,7 +298,7 @@ function add() {
 
 ## Arrays with States.
 
-You can add values into an array but you cannot use any push or add method. You have to destructre the array, and then use a callback function to add the next item to the setState function.
+You can add values into an array but you cannot use any push or add method. You have to destructre the array, and then use a call-back function to add the next item to the setState function.
 eg.
 
 ```javascript
@@ -776,6 +776,38 @@ return (
 
 ---
 
+# Hooks
+
+## useEffect( )
+
+
+
+
+
+
+
+---
+
+
+
+## API Calls
+
+Data is mostly stored in servers which react don t have direct access to. To retrieve or edit that data, we need to make some API calls.
+
+
+
+
+
+---
+
+
+
+
+
+
+
+___
+
 # React Router
 
 React Router is a third party plugin that is commonly used in React. Normaly what React does, it changes the certain elements on pages when an interaction is made. On old wesites complete webpage had to be reloaded and all data was sent by server to make this happen. But with React, A reactApp is sent to the browser which handles the routes.
@@ -850,7 +882,7 @@ json-server --watch fileToWatch.json --port 3000
 
 You will recieve the link to your json file object.
 
-![[Pasted image 20221202093612.png]](https://github.com/baked-potata/React-Classes/blob/master/Pasted%20image%2020221202093612.png)
+![[Pasted image 20221202093612.png]](https://github.com/baked-potata/React-Classes/blob/master/Pasted%20image%2020221202093612.png?raw=true)
 
 ---
 
