@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useContext } from "react";
+import TodoContext from "../context/TodoContext";
 
 function Register(props) {
   const [formData, setFormData] = useState({});
+  const { registerUser, message } = useContext(TodoContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -10,9 +13,10 @@ function Register(props) {
       [name]: value,
     }));
   };
-  console.log(formData);
+
   const onSubmit = (e) => {
     e.preventDefault();
+    registerUser(formData);
   };
 
   return (
@@ -22,12 +26,14 @@ function Register(props) {
           Username
         </label>
         <input
-          type="email"
+          type="text"
           className="form-control"
           id="userName"
           onChange={handleChange}
           name="UserName"
         />
+      </div>
+      <div className="mb-3">
         <label htmlFor="exampleInputEmail1" className="form-label">
           Email address
         </label>
@@ -50,11 +56,15 @@ function Register(props) {
           onChange={handleChange}
           name="password"
         />
-      </div>
-
+      </div>{" "}
       <button type="submit" className="btn btn-dark rounded-0">
         Register
       </button>
+      {message.text.length > 0 && (
+        <div className={message.class} role="alert">
+          {message.text}
+        </div>
+      )}
     </form>
   );
 }

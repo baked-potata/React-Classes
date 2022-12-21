@@ -51,4 +51,3 @@ function Home(props) {
 }
 
 export default Home;
-// bg-white text-primary py-3 w-50

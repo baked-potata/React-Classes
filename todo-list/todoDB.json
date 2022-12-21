@@ -1,5 +1,21 @@
 {
-  "users": {},
-
-  "tasks": {}
+  "users": [
+    {
+      "id": 0
+    },
+    {
+      "UserName": "a",
+      "email": "abc@abc.abc",
+      "password": "a",
+      "id": 1
+    }
+  ],
+  "tasks": [
+    {
+      "id": 0
+    }
+  ],
+  "comment": {
+    "cmt": "#/*add id before hand to not have this issue*/ The issue in this case was error 500, json server wasnt able to search or insert the data. might have something to do with making check user beforehand"
+  }
 }

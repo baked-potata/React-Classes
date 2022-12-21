@@ -363,6 +363,47 @@ console.log(name);
 - Prop Destructring is basically making variables out of an object.
 - `{props.object && <h3>{props.object}</h3>}` Use this to render the DOM element only when a value is available.
 
+## Prop Drilling
+
+Prop drilling, also known as prop passing or property tunneling, refers to the practice of passing data from a parent component to a child component through props (short for properties) in a React application. This is necessary when a component needs to access data that is not directly available to it, but is available to a higher-level component in the component hierarchy.
+
+For example, imagine that you have a component `App` that needs to pass some data to a component `Child` that is nested several levels deep within the component hierarchy. In this case, you would need to pass the data through each intermediate component in the hierarchy by assigning it as a prop. This can quickly become unwieldy if you have a deep component hierarchy and need to pass multiple pieces of data through it.
+
+There are a few ways to avoid prop drilling, such as using the context API or using a state management library like Redux. These approaches can make it easier to manage the flow of data through a complex component hierarchy.
+
+Here is an example of prop drilling in a React application:
+```javascript
+import React from 'react';
+
+// App is the top-level component
+function App(props) {
+  const data = {
+    name: 'John',
+    age: 30
+  };
+
+  return <Child data={data} />;
+}
+
+// Child is a nested component
+function Child(props) {
+  return <Grandchild data={props.data} />;
+}
+
+// Grandchild is a nested component
+function Grandchild(props) {
+  const { name, age } = props.data;
+
+  return <div>{`My name is ${name} and I am ${age} years old.`}</div>;
+}
+
+```
+
+In this example, the `App` component passes the `data` object to the `Child` component as a prop. The `Child` component then passes the `data` object to the `Grandchild` component as a prop. The `Grandchild` component uses the `data` object to display the name and age of the person.
+
+Prop drilling can be useful in simple applications, but it can become cumbersome in larger applications with a deep component hierarchy and many pieces of data that need to be passed through it. In such cases, it may be useful to use the context API or a state management library to avoid having to pass props through multiple levels of the component hierarchy.
+
+
 ## Array.map() to display all data via component.
 
 Array.map can be used on a state variable which later can be passed to a component, iether as an array or an object. Array.map() inserts data one by one inside the state variable and passes it to the component, repeating it till its done.
@@ -496,6 +537,146 @@ function BoxC(props) {
 ```
 
 - `onClick={handleClick(id)}` cant be used as it will execute as soon as the component is rendered. KEEP THIS IN MIND.
+
+---
+# Context
+
+Context can be used to avoid prop drilling and pass the data down to the children components.
+- First create a folder to keep all our context files inside.
+- Create a new Context.js file.
+Context file uses a `createContext` function .
+
+```javascript
+import { createContext } from "react";
+//importing the createContext function
+const TodoContext = createContext();
+//creating a new context variable to store the context data 
+export default TodoContext;
+```
+
+
+### Context Provider
+The data then will be sent to child components via a `contextProvider` .
+
+We can either pass a Provider directly with our Routes.
+```javascript 
+ <Routes>
+
+          <TodoContext.Provider>
+          //context provider with routes
+          <Route path="/" element={<Navigate replace to="/login" />}></Route>
+          {/* using navigate replace to option to show login page */}
+          <Route path="/" element={<Home />}>
+            {/* adding child routes or login and register page */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
+		 </TodoContext.Provider>
+ </Routes>
+```
+
+
+Or we can create a new varaible inside the context file and then pass it through.
+By using this method we can keep the data and fucntions in the same file without cluttering our other code.
+
+```javascript
+import { createContext } from "react"; 
+const TodoContext = createContext();
+
+export const TodoProvider = ({ children }) => {
+
+return(
+  <TodoContext.Provider value={{
+  }}>
+  
+  {children}
+  </TodoContext.Provider>;
+
+}; 
+)
+export default TodoContext;
+
+//app.js
+
+import {TodoProvider} from './context/TodoContext'
+export default App(){
+return (
+<TodoProvider>
+<Components>
+</TodoProvider>
+)
+}
+
+```
+
+
+## {children}
+The `children` prop is a special prop in React that is used to pass the content of a component as a prop to another component. It is written as `{children}` and can be used to pass any valid JSX element as a prop.
+
+```javascript
+
+export default App(){
+return(
+		<Child data="some data to be sent by props">
+			<p> Some tag or html data to be passed as a children to the child component</p>
+		</Child>
+)
+}
+
+export default Child(props){
+
+return(
+	<h1> {props.data} </h1> //data displayed via props
+	<h1> {props.children} </h1> //children tags displayd from same props
+
+)
+}
+```
+
+## useContext
+
+`useContext` is a hook in React that allows you to access the value of a context object within a functional component. It is a way to consume the value of a context without having to use the `Consumer` component, which can be verbose and difficult to use in certain situations.
+
+To use the `useContext` hook, you first need to import it from the `react` module, and then call it with the context object that you want to access. The `useContext` hook returns the current value of the context object, which you can then use within your functional component.
+
+```javascript
+
+import { createContext } from "react"; 
+
+const TodoContext = createContext(); 
+
+export const TodoProvider = ({ children }) => {
+
+  const registerUser = (formData) => {
+    console.log(formData);
+
+  };
+
+  return (
+    <TodoContext.Provider
+      value={{
+        registerUser,
+      }}
+    >
+{children}
+    </TodoContext.Provider>
+  );
+};
+
+export default TodoContext;
+
+
+import { useContext } from "react";
+import TodoContext from "../context/TodoContext";
+const { registerUser } = useContext(TodoContext);
+registerUser("some data sent back")
+// here the registerUser is afucntion defined in the context file which is imported by a child using the destructring method
+
+//useContext is used here and TodoContext id provides as a parameter to useContext.
+
+```
+
+
 
 ---
 
@@ -994,15 +1175,14 @@ You will recieve the link to your json file object.
 
 1.
 
-# Prop Drilling
 
-# Context
 
-# user Context
 
-# context provider
 
 # token generation
 
 # useNavigate for redirection
+
+# register and login
+# localstorage
 

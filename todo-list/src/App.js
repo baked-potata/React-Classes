@@ -10,33 +10,36 @@ import PageNotFound from "./pages/PageNotFound";
 import Navigation from "./components/Navigation";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import { TodoProvider } from "./context/TodoContext";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<Navigate replace to="/login" />}></Route>
-          {/* using navigate replace to option to show login page */}
+        <TodoProvider>
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<Navigate replace to="/login" />}></Route>
+            {/* using navigate replace to option to show login page */}
 
-          <Route path="/" element={<Home />}>
-            {/* adding child routes or login and register page */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Route>
+            <Route path="/" element={<Home />}>
+              {/* adding child routes or login and register page */}
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Route>
 
-          <Route path="/about" element={<About />} />
+            <Route path="/about" element={<About />} />
 
-          <Route path="/contact" element={<Contact />} />
+            <Route path="/contact" element={<Contact />} />
 
-          <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile />} />
 
-          <Route path="/task-list" element={<TaskList />} />
+            <Route path="/task-list" element={<TaskList />} />
 
-          <Route path="/create-task" element={<CreateTask />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
+            <Route path="/create-task" element={<CreateTask />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </TodoProvider>
       </BrowserRouter>
     </div>
   );

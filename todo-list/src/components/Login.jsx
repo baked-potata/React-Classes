@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useContext } from "react";
+import TodoContext from "../context/TodoContext";
 
 function Login(props) {
   const [formData, setFormData] = useState({});
+  const { login, message } = useContext(TodoContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -13,6 +16,7 @@ function Login(props) {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    login(formData);
   };
 
   return (
@@ -45,6 +49,11 @@ function Login(props) {
       <button type="submit" className="btn btn-dark rounded-0">
         Login
       </button>
+      {message.text.length > 0 && (
+        <div className={message.class} role="alert">
+          {message.text}
+        </div>
+      )}
     </form>
   );
 }
