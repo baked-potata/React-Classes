@@ -8,6 +8,10 @@ import TodoContext from "../context/TodoContext";
 function CreateTask(props) {
   const [latestTask, setLatestTask] = useState();
   const { getTaskList, taskList, loggedUser } = useContext(TodoContext);
+  const [recentTasks, setRecentTasks] = useState();
+
+  //useEffect to update task list on page reload
+
   useEffect(() => {
     getTaskList();
   }, []);
@@ -15,6 +19,9 @@ function CreateTask(props) {
   useEffect(() => {
     const latest = taskList[taskList.length - 1];
     setLatestTask(latest);
+
+    const slicedArr = taskList.slice(-3);
+    setRecentTasks(slicedArr.reverse());
   }, [taskList]);
   return (
     <div className="container-fluid abc  ">
@@ -46,6 +53,16 @@ function CreateTask(props) {
             <div className="card-header d-flex justify-content-between">
               <h3 className="text-white">Recently Added</h3>
             </div>
+            {recentTasks?.map((item) => {
+              return (
+                <div key={item.id} className="card-body text-white">
+                  <div className="d-flex justify-content-between">
+                    <p>{item.title}</p>
+                    <p>{item.duedate}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

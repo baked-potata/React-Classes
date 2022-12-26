@@ -1,12 +1,14 @@
 import React from "react";
 import { useContext } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import TodoContext from "../context/TodoContext";
 import { dateFormat } from "../helper/";
 
 function TaskForm(props) {
   const [formData, setFormData] = useState();
-  const { loggedUser, insertTask, message } = useContext(TodoContext);
+  const { loggedUser, insertTask, message, setMessage } =
+    useContext(TodoContext);
   const myDate = new Date();
 
   const onSubmit = (e) => {
@@ -39,6 +41,7 @@ function TaskForm(props) {
               <input
                 type="text"
                 id="task-title"
+                name="title"
                 className="form-control"
                 onChange={handleChange}
               />
@@ -62,11 +65,12 @@ function TaskForm(props) {
               </label>
               <input
                 type="datetime-local"
+                min="2022-06-07T00:00"
+                max="2024-06-14T00:00"
                 className="form-control"
                 id="task-duedate"
                 name="duedate"
                 onChange={handleChange}
-                value={dateFormat(myDate)}
               />
             </div>
             <div className="mb-3">

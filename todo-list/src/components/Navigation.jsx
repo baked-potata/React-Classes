@@ -126,7 +126,7 @@ function Navigation(props) {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    {loggedUser.user.UserName}
+                    {loggedUser?.user?.UserName}
                   </NavLink>
                   <ul
                     className="dropdown-menu"

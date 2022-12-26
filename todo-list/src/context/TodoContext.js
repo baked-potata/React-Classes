@@ -102,6 +102,7 @@ export const TodoProvider = ({ children }) => {
   };
 
   const insertTask = async (formData) => {
+    console.log(formData);
     const obj = {
       method: "POST",
       headers: {
@@ -146,6 +147,7 @@ export const TodoProvider = ({ children }) => {
       value={{
         registerUser,
         message,
+        setMessage,
         login,
         loggedUser,
         setLoggedUser,
