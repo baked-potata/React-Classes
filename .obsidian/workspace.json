@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "930d8866c2323a09",
+            "id": "9427c1b7e033b6ae",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -65,8 +65,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -137,7 +136,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "930d8866c2323a09",
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "9427c1b7e033b6ae",
   "lastOpenFiles": [
     "notes.md"
   ]

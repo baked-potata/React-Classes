@@ -37,6 +37,17 @@ class StaffList extends Component {
     console.log(this.state);
   }
 
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState((state) => ({
+      formData: {
+        ...state.formData,
+
+        [name]: value,
+      },
+    }));
+  };
+
   render() {
     return (
       <div>

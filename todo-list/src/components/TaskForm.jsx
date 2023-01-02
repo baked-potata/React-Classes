@@ -6,7 +6,12 @@ import TodoContext from "../context/TodoContext";
 import { dateFormat } from "../helper/";
 
 function TaskForm(props) {
-  const [formData, setFormData] = useState();
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    duedate: "",
+  });
+
   const { loggedUser, insertTask, message, setMessage } =
     useContext(TodoContext);
   const myDate = new Date();

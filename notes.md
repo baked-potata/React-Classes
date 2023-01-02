@@ -372,14 +372,15 @@ For example, imagine that you have a component `App` that needs to pass some dat
 There are a few ways to avoid prop drilling, such as using the context API or using a state management library like Redux. These approaches can make it easier to manage the flow of data through a complex component hierarchy.
 
 Here is an example of prop drilling in a React application:
+
 ```javascript
-import React from 'react';
+import React from "react";
 
 // App is the top-level component
 function App(props) {
   const data = {
-    name: 'John',
-    age: 30
+    name: "John",
+    age: 30,
   };
 
   return <Child data={data} />;
@@ -396,13 +397,11 @@ function Grandchild(props) {
 
   return <div>{`My name is ${name} and I am ${age} years old.`}</div>;
 }
-
 ```
 
 In this example, the `App` component passes the `data` object to the `Child` component as a prop. The `Child` component then passes the `data` object to the `Grandchild` component as a prop. The `Grandchild` component uses the `data` object to display the name and age of the person.
 
 Prop drilling can be useful in simple applications, but it can become cumbersome in larger applications with a deep component hierarchy and many pieces of data that need to be passed through it. In such cases, it may be useful to use the context API or a state management library to avoid having to pass props through multiple levels of the component hierarchy.
-
 
 ## Array.map() to display all data via component.
 
@@ -539,48 +538,53 @@ function BoxC(props) {
 - `onClick={handleClick(id)}` cant be used as it will execute as soon as the component is rendered. KEEP THIS IN MIND.
 
 ---
+
 # Context
 
 Context can be used to avoid prop drilling and pass the data down to the children components.
+
 - First create a folder to keep all our context files inside.
 - Create a new Context.js file.
-Context file uses a `createContext` function .
+  Context file uses a `createContext` function .
 
 ```javascript
 import { createContext } from "react";
 //importing the createContext function
 const TodoContext = createContext();
-//creating a new context variable to store the context data 
+//creating a new context variable to store the context data
 export default TodoContext;
 ```
 
-
 ### Context Provider
+
 The data then will be sent to child components via a `contextProvider` .
 
 We can either pass a Provider directly with our Routes.
-```javascript 
- <Routes>
 
-          <TodoContext.Provider>
-          //context provider with routes
-          <Route path="/" element={<Navigate replace to="/login" />}></Route>
-          {/* using navigate replace to option to show login page */}
-          <Route path="/" element={<Home />}>
-            {/* adding child routes or login and register page */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Route>
-		 </TodoContext.Provider>
- </Routes>
+```javascript
+<Routes>
+           {" "}
+  <TodoContext.Provider>
+              //context provider with routes          {" "}
+    <Route path="/" element={<Navigate replace to="/login" />}></Route>         {" "}
+    {/* using navigate replace to option to show login page */}          <Route
+      path="/"
+      element={<Home />}
+    >
+                  {/* adding child routes or login and register page */}
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />         {" "}
+    </Route>
+  </TodoContext.Provider>
+   
+</Routes>
 ```
-
 
 Or we can create a new varaible inside the context file and then pass it through.
 By using this method we can keep the data and fucntions in the same file without cluttering our other code.
 
 ```javascript
-import { createContext } from "react"; 
+import { createContext } from "react";
 const TodoContext = createContext();
 
 export const TodoProvider = ({ children }) => {
@@ -588,11 +592,11 @@ export const TodoProvider = ({ children }) => {
 return(
   <TodoContext.Provider value={{
   }}>
-  
+ 
   {children}
   </TodoContext.Provider>;
 
-}; 
+};
 )
 export default TodoContext;
 
@@ -609,8 +613,8 @@ return (
 
 ```
 
-
 ## {children}
+
 The `children` prop is a special prop in React that is used to pass the content of a component as a prop to another component. It is written as `{children}` and can be used to pass any valid JSX element as a prop.
 
 ```javascript
@@ -640,43 +644,36 @@ return(
 To use the `useContext` hook, you first need to import it from the `react` module, and then call it with the context object that you want to access. The `useContext` hook returns the current value of the context object, which you can then use within your functional component.
 
 ```javascript
+import { createContext } from "react";
 
-import { createContext } from "react"; 
-
-const TodoContext = createContext(); 
+const TodoContext = createContext();
 
 export const TodoProvider = ({ children }) => {
+  const registerUser = (formData) => {
+    console.log(formData);
+  };
 
-  const registerUser = (formData) => {
-    console.log(formData);
-
-  };
-
-  return (
-    <TodoContext.Provider
-      value={{
-        registerUser,
-      }}
-    >
-{children}
-    </TodoContext.Provider>
-  );
+  return (
+    <TodoContext.Provider
+      value={{
+        registerUser,
+      }}
+    >
+      {children}   {" "}
+    </TodoContext.Provider>
+  );
 };
 
 export default TodoContext;
 
-
 import { useContext } from "react";
 import TodoContext from "../context/TodoContext";
 const { registerUser } = useContext(TodoContext);
-registerUser("some data sent back")
+registerUser("some data sent back");
 // here the registerUser is afucntion defined in the context file which is imported by a child using the destructring method
 
 //useContext is used here and TodoContext id provides as a parameter to useContext.
-
 ```
-
-
 
 ---
 
@@ -695,14 +692,12 @@ const conditonalRender = () => {
   conditionalRender();
 }
 
- <div>
-      <h1>Hello!</h1>
-      {unreadMessages.length > 0 &&
-        <h2>
-          You have {unreadMessages.length} unread messages.
-        </h2>
-      }
-    </div>
+<div>
+  <h1>Hello!</h1>
+  {unreadMessages.length > 0 && (
+    <h2>You have {unreadMessages.length} unread messages.</h2>
+  )}
+</div>;
 ```
 
 ---
@@ -969,34 +964,57 @@ return (
 # Hooks
 
 ## useEffect( )
+`useEffect` is a hook in React that allows you to perform side effects in functional components. It takes a function as an argument, which is called the "effect", and it will be run after the component is rendered.
 
+One of the primary purposes of `useEffect` is to allow you to perform side effects in response to changes in the component's props or state. You can specify that the effect should only be run when certain values have changed by providing an array of values as a second argument to `useEffect`. For example:
+```javascript 
+import { useEffect } from 'react';
 
+function Example({ userId }) {
+  useEffect(() => {
+    // this effect will only run if the `userId` prop changes
+    console.log('The user ID has changed!');
+  }, [userId]);  // only re-run the effect if `userId` changes
+  //this is called a dependency array
 
+  return <div>Hello, world!</div>;
+}
 
+```
 
-
-
+ In this example, the effect will only be run if the `userId` prop changes. This is useful for optimizing the performance of your component, as it allows you to avoid unnecessary re-runs of the effect.
+ We can also keep the array empty for it to run once at page load only
 ---
-
-
 
 ## API Calls
 
 Data is mostly stored in servers which react don t have direct access to. To retrieve or edit that data, we need to make some API calls.
 
+The request has to be asynchronus. 
+It uses JS fetch method.
 
+```javascript 
 
+const func = async ()=>{
+	const response = await fetch('some json file url here',{Method Object:'data'})
+
+}
+```
+
+Fetch API is based on [promises](https://www.youtube.com/watch?v=DHvZLI7Db8E)
+make sure to check video on promises.
+Fetch always responds with a data even if its an error. to counter this we need to check whether the response we recieved is ok or not
+
+```javascript
+if(response.ok){
+domSomeStuff();
+}
+```
 
 
 ---
 
-
-
-
-
-
-
-___
+---
 
 # React Router
 
@@ -1167,14 +1185,34 @@ You will recieve the link to your json file object.
    be saved in state. Other form elements use the `value` property instead._
 
 1. **How do you watch for a form submit? How can you trigger a form submit?**
-   
+
    - _Can watch for the submit with an onSubmit handler on the `form` element._
-   
+
    - _Can trigger the form submit with a button click._
-     
 
-1.
 
+1. What is a "side effect" in React? What are some examples?
+- Any code that affects an outside system.
+- local storage, API, websockets, two states to keep in sync
+
+
+2. What is NOT a "side effect" in React? Examples?
+- Anything that React is in charge of.
+- Maintaining state, keeping the UI in sync with the data, 
+  render DOM elements
+
+
+3. When does React run your useEffect function? When does it NOT run
+   the effect function?
+- As soon as the component loads (first render)
+- On every re-render of the component (assuming no dependencies array)
+- Will NOT run the effect when the values of the dependencies in the
+  array stay the same between renders
+
+
+4. How would you explain what the "dependecies array" is?
+- Second paramter to the useEffect function
+- A way for React to know whether it should re-run the effect function
 
 
 
@@ -1184,5 +1222,7 @@ You will recieve the link to your json file object.
 # useNavigate for redirection
 
 # register and login
+
 # localstorage
 
+# Class Component
