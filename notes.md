@@ -984,6 +984,16 @@ function Example({ userId }) {
 
  In this example, the effect will only be run if the `userId` prop changes. This is useful for optimizing the performance of your component, as it allows you to avoid unnecessary re-runs of the effect.
  We can also keep the array empty for it to run once at page load only
+
+A Cleanup function is required in useEffect to get rid of any additional side effects that is being created.
+It is simply a return function with the clean up code. But the issue is then we cant use promises inside a useEffect hook. to walk around that we have to create a diffrenent async function inside the useEffect and then pass on a retunr clean up funciton.
+
+
+> useEffect takes a function as its parameter. If that function returns something, it needs to be a cleanup function. Otherwise, it should return nothing. If we make it an async function, it automatically retuns a promise instead of a function or nothing. Therefore, if you want to use async operations inside of useEffect, you need to define the function separately inside of the callback function,
+
+
+
+
 ---
 
 ## API Calls
@@ -1010,6 +1020,10 @@ if(response.ok){
 domSomeStuff();
 }
 ```
+
+
+
+
 
 
 ---

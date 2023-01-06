@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../logo.svg";
+import logo from "../sam-goodgame-a96Pb3auxDo-unsplash.jpg";
 function Header(props) {
   return (
     <div className="video-header">
