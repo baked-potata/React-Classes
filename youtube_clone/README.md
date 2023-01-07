@@ -57,4 +57,5 @@ import {
 
 ```
 
-- 
+- The `useParams` hook returns an object of key/value pairs of the dynamic params from the current URL that were matched by the `<Route path>`. Child routes inherit all params from their parent routes.
+- We can alos pass on css properties via props to conditional render or change style of a component 

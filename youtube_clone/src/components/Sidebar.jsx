@@ -2,9 +2,11 @@ import React from "react";
 import { Stack } from "@mui/material";
 import { categories } from "../utils/constants";
 import { Category } from "@mui/icons-material";
+import { useState } from "react";
 
 function Sidebar(props) {
   const { selectedCategory, setSelectedCategory } = props;
+
   return (
     <Stack
       direction="row"
