@@ -43,15 +43,32 @@ import { BrowserRouter , Routes , Route,  Link } from 'react-router-dom'
 <Link className="nav-link" to="/About">About</Link>
 // anchor tag is changed by Link tag and href property is now changed to 'to'
 // File to be linked is placed as a value inside to property   
+//use navlink to get an active class
 
 <BrowserRouter>
     <Routes>
       <Route path='/' element={<Home />}></Route>
       <Route path='/About' element={<About />}></Route>
+      <Route path='*' element ={<PageNotFound />} > </Route>
     </Routes>
     </BrowserRouter>
 
 ```
 
 
- 
+ *useNavigate *hook can be used to switch to different links or paths.
+```javascript
+
+import {useNavigate} from 'react-router-dom'
+
+const navigate = useNavigate();
+
+navigate('/');
+
+()=>{
+navigate('/som route')
+}
+```
+
+### Nested Routes
+

@@ -6,15 +6,23 @@ import TodoContext from "../context/TodoContext";
 import { dateFormat } from "../helper/";
 
 function TaskForm(props) {
-  const [formData, setFormData] = useState({
+  const init = {
     title: "",
     description: "",
     duedate: "",
-  });
+  };
 
-  const { loggedUser, insertTask, message, setMessage } =
+  const { loggedUser, insertTask, message, setMessage, updateTask } =
     useContext(TodoContext);
+
+  // ok so whats going in ghere is, isupdate tells the component whether the value is for updation or for new task, accordingly the submit function will be called, new update function is added to this part else, the button will be calling on submit byu default
+  const { taskInfo, isUpdate, changeUpdate, isModal } = props;
+  const [formData, setFormData] = useState(init);
   const myDate = new Date();
+
+  useEffect(() => {
+    if (isUpdate) setFormData(taskInfo);
+  }, [isUpdate, taskInfo]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -31,6 +39,12 @@ function TaskForm(props) {
       createdOn: myDate,
     }));
   };
+
+  const onUpdate = (e) => {
+    e.preventDefault();
+    updateTask(formData, taskInfo.id);
+  };
+
   return (
     <>
       <div className="card text-primary d-flex p-0 task-form rounded-0 border-0">
@@ -49,6 +63,7 @@ function TaskForm(props) {
                 name="title"
                 className="form-control"
                 onChange={handleChange}
+                value={formData.title}
               />
             </div>
             <div className="mb-3">
@@ -62,6 +77,7 @@ function TaskForm(props) {
                 cols="20"
                 rows="5"
                 onChange={handleChange}
+                value={formData.description}
               ></textarea>
             </div>
             <div className="mb-3">
@@ -76,11 +92,42 @@ function TaskForm(props) {
                 id="task-duedate"
                 name="duedate"
                 onChange={handleChange}
+                value={formData.duedate}
               />
             </div>
-            <div className="mb-3">
-              <button className="btn btn-dark rounded-0">Create Task</button>
-            </div>
+            {!isUpdate ? (
+              <div className="mb-3">
+                <button className="btn btn-dark rounded-0" onClick={onSubmit}>
+                  Create Task
+                </button>
+              </div>
+            ) : (
+              <div className="mb-3">
+                <button className="btn btn-dark rounded-0" onClick={onUpdate}>
+                  Update Task
+                </button>
+                {isModal ? (
+                  <button
+                    className="btn btn-warning"
+                    data-bs-dismiss="modal"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    Cancel
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-warning"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      changeUpdate(false);
+                      setFormData(init);
+                    }}
+                  >
+                    Cancel
+                  </button>
+                )}
+              </div>
+            )}
             {message.text.length > 0 && (
               <div className={message.class} role="alert">
                 {message.text}

@@ -102,7 +102,6 @@ export const TodoProvider = ({ children }) => {
   };
 
   const insertTask = async (formData) => {
-    console.log(formData);
     const obj = {
       method: "POST",
       headers: {
@@ -142,6 +141,51 @@ export const TodoProvider = ({ children }) => {
     } catch (err) {}
   };
 
+  const updateTask = async (formData, id) => {
+    const obj = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    };
+
+    try {
+      const response = await fetch(`http://localhost:5000/tasks/${id}`, obj);
+      if (response.ok) {
+        setMessage({
+          text: "Task updated",
+          class: "alert alert-success mt-3",
+        });
+        getTaskList();
+      } else {
+        setMessage({
+          text: "Some error occured",
+          class: "alert alert-danger mt-3",
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const deleteTask = async (id) => {
+    const response = await fetch(`http://localhost:5000/tasks/${id}`, {
+      mehtod: "DELETE",
+    });
+    if (response.ok) {
+      setMessage({
+        text: "Task deleted",
+        class: "alert alert-success mt-3",
+      });
+      getTaskList();
+    } else {
+      setMessage({
+        text: "Some error occured",
+        class: "alert alert-danger mt-3",
+      });
+    }
+  };
+
   return (
     <TodoContext.Provider
       value={{
@@ -154,6 +198,8 @@ export const TodoProvider = ({ children }) => {
         insertTask,
         taskList,
         getTaskList,
+        updateTask,
+        deleteTask,
       }}
     >
       {children}

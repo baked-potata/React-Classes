@@ -9,6 +9,7 @@ function CreateTask(props) {
   const [latestTask, setLatestTask] = useState();
   const { getTaskList, taskList, loggedUser } = useContext(TodoContext);
   const [recentTasks, setRecentTasks] = useState();
+  const [isUpdate, setIsUpdate] = useState(false);
 
   //useEffect to update task list on page reload
 
@@ -23,17 +24,26 @@ function CreateTask(props) {
     const slicedArr = taskList.slice(-3);
     setRecentTasks(slicedArr.reverse());
   }, [taskList]);
+
+  const onEditLatest = () => {
+    setIsUpdate(true);
+  };
   return (
     <div className="container-fluid abc  ">
       <div className="row h-100 d-flex   ">
         <div className="col-md-6 d-flex bg-dark h-100 text-white align-items-center justify-content-center flex-column">
-          <TaskForm />
+          <TaskForm
+            taskInfo={latestTask}
+            isUpdate={isUpdate}
+            changeUpdate={setIsUpdate}
+            isModal={false}
+          />
         </div>
         <div className="col-md-6 d-flex align-items-center justify-content-center flex-column">
           <div className="card bg-dark w-75 rounded-0 p-3">
             <div className="card-header d-flex justify-content-between">
               <h3 className="text-white">Latest Task</h3>
-              <button className="btn btn-info">
+              <button className="btn btn-info" onClick={onEditLatest}>
                 <i className="fa-regular fa-pen-to-square pe-2 "></i>Edit Task
               </button>
             </div>
