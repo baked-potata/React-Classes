@@ -60,9 +60,7 @@ import { BrowserRouter , Routes , Route,  Link } from 'react-router-dom'
 - Wrap the different components inside a `<Routes>`
 - Link the different components in the `<Route>` using a `to` parameter. The `element` parameter defines the component which is to be rendered while that url is active.
 
-*Check code above* 
-
-
+_Check code above_
 
 - `<Link>` replaces the anchor tag and `href` attribute is replaced by `to` .
 
@@ -77,21 +75,21 @@ import { BrowserRouter , Routes , Route,  Link } from 'react-router-dom'
    <Link className="nav-link" to="/about">
                 about
               </Link>
-  
+
   //
   //
   //
-  
+
   import { useNavigate } from "react-router-dom";
-  
+
   function Home(props) {
     const navigate = useNavigate();
-  
+
     return (
       <div>
         Home
         <button className="btn btn-danger" onClick={() => navigate("order")}>
-        
+
           CLick me
         </button>
       </div>
@@ -104,15 +102,10 @@ import { BrowserRouter , Routes , Route,  Link } from 'react-router-dom'
 - We can use a value of (-1) inside the navigate object to go back one step in history.
 
   ```javascript
-   <button className="btn btn-success" onClick={() => navigate(-1)}>
-          go back
-        </button>
+  <button className="btn btn-success" onClick={() => navigate(-1)}>
+    go back
+  </button>
   ```
 
-- A `{replace : true}` object can also be passed to navigate for replacing the action from history stack.  `onclick={()=>navigate('order',{replace:true})}`
+- A `{replace : true}` object can also be passed to navigate for replacing the action from history stack. `onclick={()=>navigate('order',{replace:true})}`
 - use a `*` to link a page not found option. this route will only run when no other route will match.
-
-
-
-
-
