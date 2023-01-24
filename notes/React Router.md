@@ -110,3 +110,31 @@ _Check code above_
 
 - A `{replace : true}` object can also be passed to navigate for replacing the action from history stack. `onclick={()=>navigate('order',{replace:true})}`
 - use a `*` to link a page not found option. this route will only run when no other route will match.
+
+
+### Nesting Routes
+
+Do not add forward slash for nested link
+
+The Routes will be nested inside the parent route and an outlet needs to be provided for the element to be displayed.
+*Index Route* can be used to display the outlet data without even going to the route. for ex, if you wanna see the featured product list even while on product page, it will populate the outlet with Featured products.
+
+```javascript
+<Route path="/products" element={<Products />}>
+
+          <Route path="featured" element={<Featured />} />
+           <Route index element={<Featured />} />
+          <Route path="new" element={<NewProduct />} />
+
+        </Route>
+ <div className="nav">
+
+        <Link to="featured">Featured</Link>
+
+        <Link to="new">New</Link>
+
+      </div>
+
+      <Outlet />
+```
+
